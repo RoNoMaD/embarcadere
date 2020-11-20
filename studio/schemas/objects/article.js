@@ -1,6 +1,6 @@
 export default {
   type: 'object',
-  name: 'article',
+  name: 'articleSection',
   title: 'Article',
   fields: [
     {

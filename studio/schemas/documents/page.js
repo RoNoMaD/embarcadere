@@ -20,6 +20,7 @@ export default {
       title: 'Page sections',
       of: [
         { type: 'hero' },
+        { type: 'article' },
         { type: 'imageSection' },
         { type: 'mailchimp' },
         { type: 'textSection' },
@@ -47,4 +48,4 @@ export default {
       media: 'openGraphImage',
     },
   },
-};
+}

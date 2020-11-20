@@ -29,7 +29,7 @@ export default {
   ],
   preview: {
     select: {
-      title: 'article',
+      title: 'heading',
       media: 'image'
     },
     prepare({ title, media }) {

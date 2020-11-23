@@ -1,0 +1,96 @@
+@import "../../styles/custom-media.css";
+
+:root {
+  --magic-number: 0.08816; /* tan(10°)/2 */
+  --content-width: 100vw;
+  --skew-padding: calc(var(--content-width) * var(--magic-number));
+}
+
+@media screen and (min-width: 42em) {
+  :root {
+    --content-width: 42em;
+  }
+}
+
+.root {
+  position: relative;
+  overflow: hidden;
+  margin: calc(100vw * var(--magic-number)) 0;
+  transform: skewY(-10deg);
+
+  @media (--media-min-large) {
+    display: flex;
+    transform: none;
+    margin: 0;
+  }
+}
+
+.image {
+  object-fit: cover;
+  position: absolute;
+  left: 0;
+  top: calc(-1 * calc(100vw * var(--magic-number)));
+  width: 100%;
+  height: calc(100% + calc(100vw * var(--magic-number)) * 2);
+  transform: skewY(10deg);
+
+  @media (--media-min-large) {
+    position: relative;
+    top: 0;
+    width: 50%;
+    height: auto;
+    flex: 0 0 auto;
+    transform: none;
+  }
+}
+
+.textContainer {
+  position: relative;
+  max-width: calc(var(--content-width) - 2rem);
+  margin: calc(2rem + var(--skew-padding)) auto;
+  transform: skewY(10deg);
+
+  @media (--media-min-large) {
+    width: 50%;
+    max-width: initial;
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    transform: none;
+  }
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0px 4px 100px rgba(0, 0, 0, 0.25);
+
+  @media (--media-min-large) {
+    background-color: transparent;
+    border-radius: none;
+    box-shadow: none;
+    text-align: left;
+  }
+}
+
+.root:nth-child(even) .textContainer {
+  background-color: rgba(232, 241, 217, 0.5);
+  @media (--media-min-large) {
+    order: 1;
+  }
+}
+
+.root:nth-child(odd) .image {
+  @media (--media-min-large) {
+    order: 1;
+  }
+}

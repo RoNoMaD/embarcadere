@@ -20,6 +20,8 @@ import simplePortableText from './objects/simplePortableText'
 
 // Landing page sections
 import hero from './objects/hero'
+import prestations from './objects/prestations'
+import prestation from './objects/prestation'
 import article from './objects/article'
 import imageSection from './objects/imageSection'
 import mailchimp from './objects/mailchimp'
@@ -46,5 +48,7 @@ export default createSchema({
     simplePortableText,
     siteConfig,
     textSection,
+    prestations,
+    prestation,
   ]),
 })

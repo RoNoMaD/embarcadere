@@ -2,11 +2,14 @@
 @import "../styles/custom-properties.css";
 
 .root {
-  position: relative;
-  color: var(--color-black, #000);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  color: var(--color-white, #fff);
   display: flex;
   margin: 0 auto;
-  max-width: var(--width-small);
+  z-index: 2;
 }
 
 .root a {
@@ -77,8 +80,8 @@
     left: 0;
     top: 100%;
     width: 100%;
-    background-color: var(--color-black, #000);
-    color: var(--color-white, #fff);
+    background-color: var(--color-white, #fff);
+    color: var(--color-black, #000);
 
     @nest .root[data-show-nav="true"] & {
       display: block;

@@ -1,4 +1,4 @@
-@import './custom-properties.css';
+@import "./custom-properties.css";
 
 html {
   font-family: var(--font-family-sans);
@@ -22,4 +22,41 @@ body,
 
 :global(.content) {
   min-height: calc(100% - 84px - 218px);
+}
+
+h1,
+h2 {
+  font-family: "Oswald", sans-serif;
+  margin: 0;
+}
+
+h1 {
+  font-size: 28px;
+  font-weight: 500;
+  @media (--media-min-medium) {
+    font-size: 72px;
+  }
+}
+
+h2 {
+  font-size: 28px;
+  font-weight: 400;
+  letter-spacing: normal;
+  line-height: 140.6%;
+  @media (--media-min-medium) {
+    font-size: 46px;
+  }
+}
+
+h3 {
+  font-family: "Lato", sans-serif;
+}
+
+p {
+  font-family: "Lato", sans-serif;
+  font-size: 16px;
+
+  @media (--media-min-medium) {
+    font-size: 20px;
+  }
 }

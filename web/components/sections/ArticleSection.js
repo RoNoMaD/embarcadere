@@ -11,6 +11,7 @@ const builder = imageUrlBuilder(client);
 
 function ArticleSection(props) {
   const { icon, heading, tagline, image, cta } = props;
+  console.log(heading);
 
   return (
     <div className={styles.root}>
@@ -18,7 +19,7 @@ function ArticleSection(props) {
       <div className={styles.textContainer}>
         <div className={styles.text}>
           <img width="77" src={builder.image(icon).url()} alt="" />
-          <h2>{heading}</h2>
+          <h2>{/* heading */}</h2>
           {tagline && <SimpleBlockContent blocks={tagline} />}
           {cta && cta.route && <Cta {...cta} />}
         </div>

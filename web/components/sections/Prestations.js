@@ -17,6 +17,7 @@ function Prestations(props) {
       <div className={styles.content}>
         {content.map((prestation) => (
           <article
+            key={prestation._key}
             className={styles.prestation}
             style={{ backgroundImage: `url(${builder.image(prestation.image).url()}` }}
           >

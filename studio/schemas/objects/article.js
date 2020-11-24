@@ -1,3 +1,5 @@
+import { baseLanguage } from '../supportedLanguages'
+
 export default {
   type: 'object',
   name: 'articleSection',
@@ -13,7 +15,7 @@ export default {
     },
     {
       name: 'heading',
-      type: 'string',
+      type: 'localeString',
       title: 'Heading'
     },
     {
@@ -37,7 +39,7 @@ export default {
   ],
   preview: {
     select: {
-      title: 'heading',
+      title: `title.${baseLanguage.id}`,
       media: 'image'
     },
     prepare({ title, media }) {

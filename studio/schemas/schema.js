@@ -17,6 +17,7 @@ import internalLink from './objects/internalLink'
 import link from './objects/link'
 import portableText from './objects/portableText'
 import simplePortableText from './objects/simplePortableText'
+import localeString from './objects/localeString'
 
 // Landing page sections
 import hero from './objects/hero'
@@ -50,5 +51,6 @@ export default createSchema({
     textSection,
     prestations,
     prestation,
+    localeString,
   ]),
 })

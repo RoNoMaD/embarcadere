@@ -45,17 +45,17 @@ module.exports = withCSS({
     defaultLocale: "fr",
     localeDetection: false,
   },
-  exportPathMap: async function (defaultPathMap, { dev, dir, outDir, distDir, buildId }) {
-    return client.fetch(query).then((res) => {
-      const { routes = [] } = res;
-      // Routes imported from sanity
-      const sanityRoutes = routes.filter(({ slug }) => slug.current).reduce(reduceRoutes, {});
+  // exportPathMap: async function (defaultPathMap, { dev, dir, outDir, distDir, buildId }) {
+  //   return client.fetch(query).then((res) => {
+  //     const { routes = [] } = res;
+  //     // Routes imported from sanity
+  //     const sanityRoutes = routes.filter(({ slug }) => slug.current).reduce(reduceRoutes, {});
 
-      const nextRoutes = {
-        ...sanityRoutes,
-        "/custom-page": { page: "/CustomPage" },
-      };
-      return nextRoutes;
-    });
-  },
+  //     const nextRoutes = {
+  //       ...sanityRoutes,
+  //       "/custom-page": { page: "/CustomPage" },
+  //     };
+  //     return nextRoutes;
+  //   });
+  // },
 });

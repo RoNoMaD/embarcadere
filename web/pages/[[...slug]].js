@@ -3,55 +3,12 @@ import React, { Component } from "react";
 import { NextSeo } from "next-seo";
 import groq from "groq";
 import imageUrlBuilder from "@sanity/image-url";
+import { i18n } from "../i18n";
 import Layout from "../components/Layout";
 import client from "../client";
 import RenderSections from "../components/RenderSections";
 
 const builder = imageUrlBuilder(client);
-
-const query = `
-{
-  "routes": *[_type == "route"] {
-    ...,
-    disallowRobot,
-    includeInSitemap,
-    page->{
-      _id,
-      title,
-      _createdAt,
-      _updatedAt
-  }}
-}
-`;
-
-const pageQuery = groq`
-*[_type == "route" && slug.current == $slug][0]{
-  page-> {
-    ...,
-    content[] {
-      ...,
-      prestations[] {
-        ...,
-        content[] {
-          ...,
-          cta {
-            ...,
-            route->
-          },
-        },
-      },
-      cta {
-        ...,
-        route->
-      },
-      ctas[] {
-        ...,
-        route->
-      }
-    }
-  }
-}
-`;
 
 class LandingPage extends Component {
   static propTypes = {
@@ -62,7 +19,8 @@ class LandingPage extends Component {
     openGraphImage: PropTypes.any,
     content: PropTypes.any,
     config: PropTypes.any,
-    slug: PropTypes.any,
+    slug: PropTypes.string,
+    locale: PropTypes.string,
   };
 
   render() {
@@ -123,15 +81,52 @@ class LandingPage extends Component {
 
 export default LandingPage;
 
+const pageQuery = groq`
+*[_type == "route" && slug.current == $slug][0]{
+  page-> {
+    ...,
+    content[] {
+      ...,
+      prestations[] {
+        ...,
+        content[] {
+          ...,
+          cta {
+            ...,
+            route->
+          },
+        },
+      },
+      cta {
+        ...,
+        route->
+      },
+      ctas[] {
+        ...,
+        route->
+      }
+    }
+  }
+}
+`;
+
 export async function getStaticProps({ params }) {
   console.log("params.slug", params.slug);
-  if (!params.slug) {
-    //   console.error("no slug");
-    //   return;
-    // }
+  let pageSlug = "";
+  let locale = i18n.defaultLocale;
+  if (params.slug) {
+    if (i18n.locales.includes(params.slug[0])) {
+      if (params.slug.length > 1) {
+        pageSlug = params.slug[1];
+      }
+      locale = params.slug[0];
+    } else {
+      pageSlug = params.slug[0];
+    }
+  }
 
-    // // Frontpage
-    // if (slug && slug === "/") {
+  if (!pageSlug) {
+    // Frontpage
     return client
       .fetch(
         groq`
@@ -163,47 +158,74 @@ export async function getStaticProps({ params }) {
         }
       `
       )
-      .then((res) => ({ props: { ...res.frontpage, slug: "/" } }));
+      .then((res) => ({ props: { ...res.frontpage, slug: "/", locale } }));
   }
 
-  const slug = params.slug[params.slug.length - 1];
+  return client
+    .fetch(pageQuery, { slug: pageSlug })
+    .then((res) => ({ props: { ...res.page, slug: pageSlug, locale } }));
 
-  if (slug && slug !== "/") {
-    return client.fetch(pageQuery, { slug }).then((res) => ({ props: { ...res.page, slug } }));
-  }
-
-  return {
-    props: {}, // will be passed to the page component as props
-  };
+  // return {
+  //   props: {}, // will be passed to the page component as props
+  // };
 }
 
-export async function getStaticPaths({ locales }) {
+const query = `
+{
+  "routes": *[_type == "route"] {
+    ...,
+    disallowRobots,
+    includeInSitemap,
+    page->{
+      _id,
+      title,
+      _createdAt,
+      _updatedAt
+  }}
+}
+`;
+
+export async function getStaticPaths() {
   return client.fetch(query).then((res) => {
     const { routes = [] } = res;
     const formattedRoutes = routes
       .filter(({ slug }) => slug.current)
-      .map(({ slug = {}, page = {}, includeInSitemap, disallowRobot }) => {
+      .map(({ slug = {}, page = {}, includeInSitemap, disallowRobots }) => {
         const { _createdAt, _updatedAt } = page;
         return {
           params: {
-            slug: [slug.current],
+            slug: slug.current === "/" ? [] : [slug.current],
             includeInSitemap,
-            disallowRobot,
+            disallowRobots,
             _createdAt,
             _updatedAt,
           },
         };
       });
-    console.log(formattedRoutes.map((route) => route.params.slug));
+    // console.log(formattedRoutes.map((route) => route.params.slug));
+
+    const formattedRoutesWithLocales = [
+      ...formattedRoutes,
+      ...i18n.locales
+        .filter((locale) => locale !== i18n.defaultLocale)
+        .reduce(
+          (acc, locale) => [
+            ...acc,
+            ...formattedRoutes.map((formattedRoute) => ({
+              params: {
+                ...formattedRoute.params,
+                slug: [locale, ...formattedRoute.params.slug],
+                // customLocale: locale,
+              },
+            })),
+          ],
+          []
+        ),
+    ];
+
     return {
-      paths: locales.reduce(
-        (acc, locale) => [
-          ...acc,
-          ...formattedRoutes.map((formattedRoute) => ({ ...formattedRoute, locale })),
-        ],
-        []
-      ),
-      fallback: true,
+      paths: formattedRoutesWithLocales,
+      fallback: false,
     };
   });
 }

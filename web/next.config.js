@@ -20,7 +20,8 @@ const reduceRoutes = (obj, route) => {
   const { page = {}, slug = {} } = route;
   const { _createdAt, _updatedAt } = page;
   const { includeInSitemap, disallowRobot } = route;
-  const path = route["slug"]["current"] === "/" ? "/" : `/${route["slug"]["current"]}`;
+  const path =
+    route["slug"]["current"] === "/" ? "/" : `/${route["slug"]["current"]}`;
   obj[path] = {
     query: {
       slug: slug.current,
@@ -38,24 +39,8 @@ module.exports = withCSS({
   cssModules: true,
   cssLoaderOptions: {
     importLoaders: 1,
-    localIdentName: isProduction ? "[hash:base64:5]" : "[name]__[local]___[hash:base64:5]",
+    localIdentName: isProduction
+      ? "[hash:base64:5]"
+      : "[name]__[local]___[hash:base64:5]",
   },
-  i18n: {
-    locales: ["fr", "en"],
-    defaultLocale: "fr",
-    localeDetection: false,
-  },
-  // exportPathMap: async function (defaultPathMap, { dev, dir, outDir, distDir, buildId }) {
-  //   return client.fetch(query).then((res) => {
-  //     const { routes = [] } = res;
-  //     // Routes imported from sanity
-  //     const sanityRoutes = routes.filter(({ slug }) => slug.current).reduce(reduceRoutes, {});
-
-  //     const nextRoutes = {
-  //       ...sanityRoutes,
-  //       "/custom-page": { page: "/CustomPage" },
-  //     };
-  //     return nextRoutes;
-  //   });
-  // },
 });

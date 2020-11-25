@@ -14,13 +14,23 @@ function Layout(props) {
     return <div>Missing config</div>;
   }
 
-  const { title, mainNavigation, footerNavigation, footerText, logo, url } = config;
+  const {
+    title,
+    mainNavigation,
+    footerNavigation,
+    footerText,
+    logo,
+    url,
+  } = config;
   const logoUrl = logo && logo.asset && logo.asset.url;
 
   return (
     <>
       <Head>
-        <meta name="viewport" content="initial-scale=1.0, width=device-width, viewport-fit=cover" />
+        <meta
+          name="viewport"
+          content="initial-scale=1.0, width=device-width, viewport-fit=cover"
+        />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link
           href="https://fonts.googleapis.com/css2?family=Lato&family=Oswald:wght@400;500&display=swap"

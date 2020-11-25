@@ -14,7 +14,8 @@ function Footer(props) {
           {navItems &&
             navItems.map((item) => {
               const isActive =
-                router.pathname === "/LandingPage" && router.query.slug === item.slug.current;
+                router.pathname === "/LandingPage" &&
+                router.query.slug === item.slug.current;
               return (
                 <li key={item._id} className={styles.item}>
                   <Link
@@ -24,7 +25,9 @@ function Footer(props) {
                     }}
                     as={`/${item.slug.current}`}
                   >
-                    <a data-is-active={isActive ? "true" : "false"}>{item.title}</a>
+                    <a data-is-active={isActive ? "true" : "false"}>
+                      {item.title}
+                    </a>
                   </Link>
                 </li>
               );

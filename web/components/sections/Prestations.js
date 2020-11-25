@@ -19,7 +19,9 @@ function Prestations(props) {
           <article
             key={prestation._key}
             className={styles.prestation}
-            style={{ backgroundImage: `url(${builder.image(prestation.image).url()}` }}
+            style={{
+              backgroundImage: `url(${builder.image(prestation.image).url()}`,
+            }}
           >
             <h3 className={styles.title}>{prestation.heading}</h3>
             <div className={styles.price}>{prestation.price}</div>

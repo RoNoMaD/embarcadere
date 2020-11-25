@@ -15,7 +15,11 @@ function ArticleSection(props) {
 
   return (
     <div className={styles.root}>
-      <img className={styles.image} src={builder.image(image).url()} alt={heading} />
+      <img
+        className={styles.image}
+        src={builder.image(image).url()}
+        alt={heading}
+      />
       <div className={styles.textContainer}>
         <div className={styles.text}>
           <img width="77" src={builder.image(icon).url()} alt="" />

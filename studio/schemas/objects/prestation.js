@@ -6,12 +6,14 @@ export default {
     {
       name: 'heading',
       type: 'string',
-      title: 'Heading'
+      title: 'Heading',
+      localize: true
     },
     {
       name: 'price',
       type: 'string',
-      title: 'Prix'
+      title: 'Prix',
+      localize: true
     },
     {
       name: 'image',

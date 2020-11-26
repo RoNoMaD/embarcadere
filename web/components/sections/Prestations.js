@@ -15,21 +15,24 @@ function Prestations(props) {
     <div className={styles.root}>
       <h2 className={styles.heading}>{heading}</h2>
       <div className={styles.content}>
-        {content.map((prestation) => (
-          <article
-            key={prestation._key}
-            className={styles.prestation}
-            style={{
-              backgroundImage: `url(${builder.image(prestation.image).url()}`,
-            }}
-          >
-            <h3 className={styles.title}>{prestation.heading}</h3>
-            <div className={styles.price}>{prestation.price}</div>
-            {prestation.cta && prestation.cta.route && (
-              <Cta className={styles.cta} {...prestation.cta} />
-            )}
-          </article>
-        ))}
+        {content.map((prestation) => {
+          console.log("prestation", prestation);
+          return (
+            <article
+              key={prestation._key}
+              className={styles.prestation}
+              style={{
+                backgroundImage: `url(${builder.image(prestation.image).url()}`,
+              }}
+            >
+              <h3 className={styles.title}>{prestation.heading}</h3>
+              <div className={styles.price}>{prestation.price}</div>
+              {prestation.cta && prestation.cta.route && (
+                <Cta className={styles.cta} {...prestation.cta} />
+              )}
+            </article>
+          );
+        })}
       </div>
     </div>
   );

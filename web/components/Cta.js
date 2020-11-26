@@ -1,20 +1,23 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { i18n } from "../i18n";
 import styles from "./Cta.module.css";
 
-function cta(props) {
+function Cta(props) {
   const { className, title, route, link } = props;
+  const router = useRouter();
+  const locale =
+    router.query.slug &&
+    router.query.slug !== "/" &&
+    i18n.locales.includes(router.query.slug[0])
+      ? router.query.slug[0]
+      : "";
 
   if (route && route.slug && route.slug.current) {
     return (
-      <Link
-        href={{
-          pathname: "/LandingPage",
-          query: { slug: route.slug.current },
-        }}
-        as={`/${route.slug.current}`}
-      >
+      <Link href={`/${route.slug.current}`}>
         <a className={`${className} ${styles.button}`}>{title}</a>
       </Link>
     );
@@ -31,7 +34,7 @@ function cta(props) {
   return <a className={`${className} ${styles.button}`}>{title}</a>;
 }
 
-cta.propTypes = {
+Cta.propTypes = {
   title: PropTypes.string.isRequired,
   route: PropTypes.shape({
     slug: PropTypes.shape({
@@ -42,4 +45,4 @@ cta.propTypes = {
   className: PropTypes.string,
 };
 
-export default cta;
+export default Cta;

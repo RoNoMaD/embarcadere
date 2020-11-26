@@ -81,37 +81,50 @@ class LandingPage extends Component {
 
 export default LandingPage;
 
+const siteConfigQuery = `
+  *[_id == "global-config"] {
+    ...,
+    logo {asset->{extension, url}},
+    mainNavigation[] -> {
+      ...,
+      "title": page->title[$locale]
+    },
+    footerNavigation[] -> {
+      ...,
+      "title": page->title[$locale]
+    }
+  }[0]
+  `;
+
 const pageQuery = groq`
 *[_type == "route" && slug.current == $slug][0]{
   page-> {
     ...,
     content[] {
       ...,
-      prestations[] {
-        ...,
-        content[] {
-          ...,
-          cta {
-            ...,
-            route->
-          },
-        },
-      },
+      "heading": coalesce(heading[$locale], heading.fr),
+      "tagline": coalesce(tagline[$locale],tagline.fr),
       cta {
         ...,
+        "title": coalesce(title[$locale], title.fr),
         route->
       },
-      ctas[] {
+      content[] {
         ...,
-        route->
-      }
+        "heading": coalesce(heading[$locale], heading.fr),
+        "price": coalesce(price[$locale],price.fr),
+        cta {
+          ...,
+          "title": coalesce(title[$locale], title.fr),
+          route->
+        },
+      },
     }
   }
 }
 `;
 
 export async function getStaticProps({ params }) {
-  console.log("params.slug", params.slug);
   let pageSlug = "";
   let locale = i18n.defaultLocale;
   if (params.slug) {
@@ -125,6 +138,8 @@ export async function getStaticProps({ params }) {
     }
   }
 
+  const config = await client.fetch(siteConfigQuery, { locale });
+
   if (!pageSlug) {
     // Frontpage
     return client
@@ -135,39 +150,36 @@ export async function getStaticProps({ params }) {
             ...,
             content[] {
               ...,
-              prestations[] {
-                ...,
-                content[] {
-                  ...,
-                  cta {
-                    ...,
-                    route->
-                  },
-                },
-              },
+              "heading": coalesce(heading[$locale], heading.fr),
+              "tagline": coalesce(tagline[$locale],tagline.fr),
               cta {
                 ...,
+                "title": coalesce(title[$locale], title.fr),
                 route->
               },
-              ctas[] {
+              content[] {
                 ...,
-                route->
-              }
+                "heading": coalesce(heading[$locale], heading.fr),
+                "price": coalesce(price[$locale],price.fr),
+                cta {
+                  ...,
+                  "title": coalesce(title[$locale], title.fr),
+                  route->
+                },
+              },
             }
           }
         }
-      `
+      `,
+        { locale }
       )
-      .then((res) => ({ props: { ...res.frontpage, slug: "/", locale } }));
+      .then((res) => ({
+        props: { ...res.frontpage, slug: "/", locale, config },
+      }));
   }
-
-  return client
-    .fetch(pageQuery, { slug: pageSlug })
-    .then((res) => ({ props: { ...res.page, slug: pageSlug, locale } }));
-
-  // return {
-  //   props: {}, // will be passed to the page component as props
-  // };
+  return client.fetch(pageQuery, { slug: pageSlug, locale }).then((res) => {
+    return { props: { ...res.page, slug: pageSlug, locale, config } };
+  });
 }
 
 const query = `
@@ -202,7 +214,6 @@ export async function getStaticPaths() {
           },
         };
       });
-    // console.log(formattedRoutes.map((route) => route.params.slug));
 
     const formattedRoutesWithLocales = [
       ...formattedRoutes,
@@ -215,7 +226,6 @@ export async function getStaticPaths() {
               params: {
                 ...formattedRoute.params,
                 slug: [locale, ...formattedRoute.params.slug],
-                // customLocale: locale,
               },
             })),
           ],

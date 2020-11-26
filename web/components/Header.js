@@ -74,10 +74,17 @@ class Header extends Component {
     const { title = "Missing title", navItems, router, logo } = this.props;
     const { showNav } = this.state;
 
+    const locale =
+      router.query.slug &&
+      router.query.slug !== "/" &&
+      i18n.locales.includes(router.query.slug[0])
+        ? router.query.slug[0]
+        : "";
+
     return (
       <div className={styles.root} data-show-nav={showNav}>
         <h1 className={styles.branding}>
-          <Link href="/">
+          <Link href={`/${locale}`}>
             <a title={title}>{this.renderLogo(logo)}</a>
           </Link>
         </h1>
@@ -86,17 +93,11 @@ class Header extends Component {
             {navItems &&
               navItems.map((item) => {
                 const { slug, title, _id } = item;
-                const isActive =
-                  router.pathname === "/LandingPage" &&
-                  router.query.slug === slug.current;
+                const isActive = router.query.slug === slug.current;
                 return (
                   <li key={_id} className={styles.navItem}>
                     <Link
-                      href={{
-                        pathname: "/LandingPage",
-                        query: { slug: slug.current },
-                      }}
-                      as={`/${slug.current}`}
+                      href={`${locale ? `/${locale}` : ""}/${slug.current}`}
                     >
                       <a data-is-active={isActive ? "true" : "false"}>
                         {title}
@@ -118,7 +119,6 @@ class Header extends Component {
             {i18n.locales.map((locale) => {
               let href = "/";
               let slugs;
-              console.log("router.query.slug", router.query.slug);
               if (router.query.slug && router.query.slug !== "/") {
                 slugs = router.query.slug.filter(
                   (slug) => !i18n.locales.includes(slug)

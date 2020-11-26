@@ -8,20 +8,19 @@ export default {
     {
       name: 'icon',
       type: 'image',
-      title: 'Icone',
-      options: {
-        hotspot: true
-      }
+      title: 'Icone'
     },
     {
       name: 'heading',
-      type: 'localeString',
-      title: 'Heading'
+      type: 'string',
+      title: 'Heading',
+      localize: true
     },
     {
       name: 'tagline',
       type: 'simplePortableText',
-      title: 'Tagline'
+      title: 'Tagline',
+      localize: true
     },
     {
       name: 'image',
@@ -39,7 +38,7 @@ export default {
   ],
   preview: {
     select: {
-      title: `title.${baseLanguage.id}`,
+      title: 'heading',
       media: 'image'
     },
     prepare({ title, media }) {

@@ -6,7 +6,8 @@ export default {
     {
       name: 'heading',
       type: 'string',
-      title: 'Heading'
+      title: 'Heading',
+      localize: true
     },
     {
       name: 'content',
@@ -17,12 +18,14 @@ export default {
   ],
   preview: {
     select: {
-      title: 'heading'
+      title: 'heading',
+      media: 'content[0].image'
     },
     prepare({ title, media }) {
       return {
         title,
-        subtitle: 'Prestations section'
+        subtitle: 'Prestations section',
+        media
       }
     }
   }

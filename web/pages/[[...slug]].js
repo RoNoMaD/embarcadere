@@ -62,16 +62,14 @@ class LandingPage extends Component {
     return (
       <Layout config={config}>
         <NextSeo
-          config={{
-            title,
-            titleTemplate: `${config.title} | %s`,
-            description,
-            canonical: config.url && `${config.url}/${slug}`,
-            openGraph: {
-              images: openGraphImages,
-            },
-            noindex: disallowRobots,
+          title={title}
+          titleTemplate={`${config.title} | %s`}
+          description={description}
+          canonical={config.url && `${config.url}/${slug}`}
+          openGraph={{
+            images: openGraphImages,
           }}
+          noindex={disallowRobots}
         />
         {content && <RenderSections sections={content} />}
       </Layout>
@@ -100,6 +98,7 @@ const pageQuery = groq`
 *[_type == "route" && slug.current == $slug][0]{
   page-> {
     ...,
+    "title": coalesce(title[$locale], title.fr),
     content[] {
       ...,
       "heading": coalesce(heading[$locale], heading.fr),
@@ -148,6 +147,7 @@ export async function getStaticProps({ params }) {
         *[_id == "global-config"][0]{
           frontpage -> {
             ...,
+            "title": coalesce(title[$locale], title.fr),
             content[] {
               ...,
               "heading": coalesce(heading[$locale], heading.fr),

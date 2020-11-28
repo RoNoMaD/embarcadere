@@ -18,6 +18,7 @@ function ArticleSection(props) {
         className={styles.image}
         src={builder.image(image).url()}
         alt={heading}
+        loading="lazy"
       />
       <div className={styles.textContainer}>
         <div className={styles.text}>

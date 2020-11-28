@@ -16,7 +16,6 @@ function Prestations(props) {
       <h2 className={styles.heading}>{heading}</h2>
       <div className={styles.content}>
         {content.map((prestation) => {
-          console.log("prestation", prestation);
           return (
             <article
               key={prestation._key}

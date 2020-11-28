@@ -87,7 +87,7 @@ export default LandingPage;
 const siteConfigQuery = `
   *[_id == "global-config"] {
     ...,
-    logo {asset->{extension, url}},
+    logo {asset->{extension, url}, alt},
     mainNavigation[] -> {
       ...,
       "title": page->title[$locale]

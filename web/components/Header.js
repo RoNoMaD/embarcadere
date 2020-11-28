@@ -65,9 +65,7 @@ class Header extends Component {
       return <SVG src={logo.asset.url} className={styles.logo} />;
     }
 
-    return (
-      <img src={logo.asset.url} alt={logo.title} className={styles.logo} />
-    );
+    return <img src={logo.asset.url} alt={logo.alt} className={styles.logo} />;
   };
 
   render() {
@@ -110,6 +108,7 @@ class Header extends Component {
           <button
             className={styles.showNavButton}
             onClick={this.handleMenuToggle}
+            aria-label="menu"
           >
             <HamburgerIcon className={styles.hamburgerIcon} />
           </button>

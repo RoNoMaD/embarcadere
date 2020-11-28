@@ -23,6 +23,8 @@ function Prestations(props) {
               style={{
                 backgroundImage: `url(${builder
                   .image(prestation.image)
+                  .width(288)
+                  .height(460)
                   .auto("format")
                   .url()}`,
               }}

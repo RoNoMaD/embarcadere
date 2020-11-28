@@ -21,7 +21,12 @@ function ArticleSection(props) {
       />
       <div className={styles.textContainer}>
         <div className={styles.text}>
-          <img width="77" src={builder.image(icon).url()} alt="" />
+          <img
+            width="77"
+            src={builder.image(icon).url()}
+            alt=""
+            loading="lazy"
+          />
           <h2>{heading}</h2>
           {tagline && <SimpleBlockContent blocks={tagline} />}
           {cta && cta.route && <Cta {...cta} />}

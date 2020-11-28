@@ -21,7 +21,10 @@ function Prestations(props) {
               key={prestation._key}
               className={styles.prestation}
               style={{
-                backgroundImage: `url(${builder.image(prestation.image).url()}`,
+                backgroundImage: `url(${builder
+                  .image(prestation.image)
+                  .auto("format")
+                  .url()}`,
               }}
             >
               <h3 className={styles.title}>{prestation.heading}</h3>

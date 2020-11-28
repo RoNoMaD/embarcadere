@@ -16,6 +16,7 @@ function Hero(props) {
   const style = backgroundImage
     ? {
         backgroundImage: `url("${urlFor(backgroundImage)
+          .auto("format")
           .width(2000)
           .auto("format")
           .url()}")`,

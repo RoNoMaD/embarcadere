@@ -32,7 +32,12 @@ class LandingPage extends Component {
       content = [],
       config = {},
       slug,
+      locale,
     } = this.props;
+
+    if (!!(typeof window !== "undefined" && window.document)) {
+      document.documentElement.lang = locale;
+    }
 
     const openGraphImages = openGraphImage
       ? [

@@ -15,6 +15,10 @@
   padding: 84px var(--space-m);
   overflow: hidden;
 
+  @media (--media-min-small) {
+    min-height: 280px;
+  }
+
   @media (--media-min-large) {
     background-position: center center;
     min-height: 240px;
@@ -38,11 +42,11 @@
     content: "";
     position: absolute;
     left: 0;
-    top: calc(100% - 100vw * 0.08816);
+    top: calc(100% - 100vw * 0.08748);
     right: 0;
-    bottom: calc(-1 * 100vw * 0.08816);
+    bottom: calc(-1 * 100vw * 0.08748);
     background-color: white;
-    transform: skewY(-10deg);
+    transform: skewY(-5deg);
     transform-origin: 50% 0;
   }
 }
@@ -71,7 +75,7 @@
 }
 
 .tagline {
-  max-width: 67vw;
+  max-width: 31ch;
   margin: 0;
   padding: 0 var(--space-m);
   margin-top: 0.5em;
@@ -86,5 +90,5 @@
 
 .tagline > p {
   margin: 0;
-  line-height: 1;
+  line-height: 1.5;
 }

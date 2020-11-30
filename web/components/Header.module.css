@@ -83,7 +83,7 @@
     background-color: var(--color-white, #fff);
     color: var(--color-black, #000);
 
-    @nest .root[data-show-nav="true"] & {
+    @nest .root[data-show-nav="menu"] & {
       display: block;
     }
   }
@@ -149,4 +149,36 @@
   @media (--media-min-medium) {
     display: none;
   }
+}
+
+.navLanguages {
+}
+
+.navLanguagesItems {
+  padding: 0;
+  margin: 0;
+  z-index: 10;
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  width: 100%;
+  background-color: var(--color-white, #fff);
+  color: var(--color-black, #000);
+
+  @nest .root[data-show-nav="languages"] & {
+    display: block;
+  }
+}
+
+.showNavLanguagesButton {
+  appearance: none;
+  border: none;
+  font: inherit;
+  background: none;
+  color: inherit;
+  margin: 0;
+  padding: 1.5rem;
+  outline: none;
+  height: 100%;
 }

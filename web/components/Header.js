@@ -8,7 +8,7 @@ import HamburgerIcon from "./icons/Hamburger";
 import { i18n } from "../i18n";
 
 class Header extends Component {
-  state = { showNav: false };
+  state = { showNav: "none" };
 
   static propTypes = {
     router: PropTypes.shape({
@@ -46,13 +46,20 @@ class Header extends Component {
   }
 
   hideMenu = () => {
-    this.setState({ showNav: false });
+    this.setState({ showNav: "none" });
   };
 
   handleMenuToggle = () => {
     const { showNav } = this.state;
     this.setState({
-      showNav: !showNav,
+      showNav: showNav !== "menu" ? "menu" : "none",
+    });
+  };
+
+  handleLanguagesToggle = () => {
+    const { showNav } = this.state;
+    this.setState({
+      showNav: showNav !== "languages" ? "languages" : "none",
     });
   };
 
@@ -113,8 +120,8 @@ class Header extends Component {
             <HamburgerIcon className={styles.hamburgerIcon} />
           </button>
         </nav>
-        <nav>
-          <ul>
+        <nav className={styles.navLanguages}>
+          <ul className={styles.navLanguagesItems}>
             {i18n.locales.map((locale) => {
               let href = "/";
               let slugs;
@@ -130,14 +137,23 @@ class Header extends Component {
               }
               href += slugs.join("/");
               return (
-                <li key={locale}>
+                <li key={locale} className={styles.navItem}>
                   <Link href={href}>
-                    <a>{locale}</a>
+                    <a rel="alternate" lang={locale}>
+                      {locale === "fr" ? "Français" : "English"}
+                    </a>
                   </Link>
                 </li>
               );
             })}
           </ul>
+          <button
+            className={styles.showNavLanguagesButton}
+            onClick={this.handleLanguagesToggle}
+            aria-label="languages"
+          >
+            {locale === "" ? "Français" : "English"}
+          </button>
         </nav>
       </div>
     );

@@ -1,7 +1,7 @@
 @import "../../styles/custom-media.css";
 
 :root {
-  --magic-number: 0.08816; /* tan(10°)/2 */
+  --magic-number: 0.08748; /* tan(5°)/2 */
   --content-width: 100vw;
   --skew-padding: calc(var(--content-width) * var(--magic-number));
 }
@@ -16,7 +16,7 @@
   position: relative;
   overflow: hidden;
   margin: calc(100vw * var(--magic-number)) 0;
-  transform: skewY(-10deg);
+  transform: skewY(-5deg);
 
   @media (--media-min-large) {
     display: flex;
@@ -25,7 +25,7 @@
   }
 
   & > * {
-    transform: skewY(10deg);
+    transform: skewY(5deg);
 
     @media (--media-min-large) {
       transform: none;

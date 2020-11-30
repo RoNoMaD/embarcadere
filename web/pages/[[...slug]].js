@@ -71,6 +71,16 @@ class LandingPage extends Component {
           titleTemplate={`${config.title} | %s`}
           description={description}
           canonical={config.url && `${config.url}/${slug}`}
+          languageAlternates={i18n.locales
+            .filter((loc) => loc !== locale)
+            .map((locale) => {
+              return {
+                hrefLang: locale,
+                href: `${locale !== i18n.defaultLocale ? `/${locale}` : ""}${
+                  slug !== "/" ? `/${slug}` : "/"
+                }`,
+              };
+            })}
           openGraph={{
             images: openGraphImages,
           }}

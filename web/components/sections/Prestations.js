@@ -26,7 +26,7 @@ function Prestations(props) {
                   .width(288)
                   .height(460)
                   .auto("format")
-                  .url()}`,
+                  .url()})`,
               }}
             >
               <h3 className={styles.title}>{prestation.heading}</h3>

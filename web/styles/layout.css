@@ -22,6 +22,9 @@ body,
 
 :global(.content) {
   min-height: calc(100% - 84px - 218px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 h1,
@@ -39,7 +42,7 @@ h1 {
 }
 
 h2 {
-  font-size: 28px;
+  font-size: 28x;
   font-weight: 400;
   letter-spacing: normal;
   line-height: 140.6%;

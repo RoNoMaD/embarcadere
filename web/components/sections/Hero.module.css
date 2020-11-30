@@ -2,6 +2,7 @@
 @import "../../styles/custom-properties.css";
 
 .root {
+  align-self: stretch;
   position: relative;
   /* min-height: 310px; */
   display: flex;

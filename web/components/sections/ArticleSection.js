@@ -16,7 +16,7 @@ function ArticleSection(props) {
     <div className={styles.root}>
       <img
         className={styles.image}
-        src={builder.image(image).auto("format").url()}
+        src={builder.image(image).maxWidth(512).auto("format").url()}
         alt={heading}
         loading="lazy"
       />

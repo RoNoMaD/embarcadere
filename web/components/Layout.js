@@ -25,7 +25,7 @@ function Layout(props) {
     mainNavigation,
     footerNavigation,
     footerText,
-    logo,
+    logo, 
     url,
   } = config;
   const logoUrl = logo && logo.asset && logo.asset.url;
@@ -98,33 +98,35 @@ function Layout(props) {
               as="image"
               media="(min-width: 900px)"
             ></link>
-            <style>
-              {`
+            <style
+              dangerouslySetInnerHTML={{
+                __html: `
                 .hero-image {
-                  background-image: url('${urlFor(heroBgImg)
+                  background-image: url("${urlFor(heroBgImg)
                     .width(750)
                     .auto("format")
-                    .url()}');
+                    .url()}");
                 }
               
                 @media (min-width: 450px) {
                   .hero-image {
-                    background-image: url('${urlFor(heroBgImg)
+                    background-image: url("${urlFor(heroBgImg)
                       .width(1080)
                       .auto("format")
-                      .url()}');
+                      .url()}");
                   }
                 }
 
                 @media (min-width: 900px) {
                   .hero-image {
-                    background-image: url('${urlFor(heroBgImg)
+                    background-image: url("${urlFor(heroBgImg)
                       .auto("format")
-                      .url()}');
+                      .url()}");
                   }
                 }
-              `}
-            </style>
+              `,
+              }}
+            ></style>
           </>
         ) : null}
       </Head>

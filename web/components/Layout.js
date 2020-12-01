@@ -1,13 +1,19 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Head from "next/head";
+import imageUrlBuilder from "@sanity/image-url";
+import client from "../client";
 
 import { LogoJsonLd } from "next-seo";
 import Header from "./Header";
 import Footer from "./Footer";
 
+function urlFor(source) {
+  return imageUrlBuilder(client).image(source);
+}
+
 function Layout(props) {
-  const { config, children } = props;
+  const { config, heroBgImg, children } = props;
 
   if (!config) {
     console.error("Missing config");
@@ -71,6 +77,9 @@ function Layout(props) {
             href="https://fonts.googleapis.com/css2?family=Lato&family=Oswald:wght@400;500&&display=swap"
           />
         </noscript>
+        {heroBgImg ? (
+          <link rel="preload" href={urlFor(heroBgImg)} as="image"></link>
+        ) : null}
       </Head>
       <div className="container">
         <Header title={title} navItems={mainNavigation} logo={logo} />

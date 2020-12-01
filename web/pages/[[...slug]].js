@@ -64,8 +64,14 @@ class LandingPage extends Component {
         ]
       : [];
 
+    const heroSection = content.find((section) => section._type === "hero");
+    let heroBgImg;
+    if (heroSection) {
+      heroBgImg = heroSection.backgroundImage;
+    }
+
     return (
-      <Layout config={config}>
+      <Layout config={config} heroBgImg={heroBgImg}>
         <NextSeo
           title={title}
           titleTemplate={`${config.title} | %s`}

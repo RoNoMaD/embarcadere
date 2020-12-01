@@ -82,14 +82,27 @@ function Layout(props) {
             <link rel="preconnect" href="https://cdn.sanity.io" crossorigin />
             <link
               rel="preload"
+              href={urlFor(heroBgImg).width(750).auto("format").url()}
+              as="image"
+              media="(max-width: 449px)"
+            ></link>
+            <link
+              rel="preload"
+              href={urlFor(heroBgImg).width(1080).auto("format").url()}
+              as="image"
+              media="(min-width: 450px and max-width: 899px)"
+            ></link>
+            <link
+              rel="preload"
               href={urlFor(heroBgImg).auto("format").url()}
               as="image"
+              media="(min-width: 900px)"
             ></link>
             <style>
               {`
                 .hero-image {
                   background-image: url('${urlFor(heroBgImg)
-                    .width(450)
+                    .width(750)
                     .auto("format")
                     .url()}');
                 }
@@ -97,16 +110,7 @@ function Layout(props) {
                 @media (min-width: 450px) {
                   .hero-image {
                     background-image: url('${urlFor(heroBgImg)
-                      .width(675)
-                      .auto("format")
-                      .url()}');
-                  }
-                }
-              
-                @media (min-width: 675px) {
-                  .hero-image {
-                    background-image: url('${urlFor(heroBgImg)
-                      .width(900)
+                      .width(1080)
                       .auto("format")
                       .url()}');
                   }

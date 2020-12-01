@@ -78,11 +78,50 @@ function Layout(props) {
           />
         </noscript>
         {heroBgImg ? (
-          <link
-            rel="preload"
-            href={urlFor(heroBgImg).auto("format").url()}
-            as="image"
-          ></link>
+          <>
+            <link rel="preconnect" href="https://cdn.sanity.io" crossorigin />
+            <link
+              rel="preload"
+              href={urlFor(heroBgImg).auto("format").url()}
+              as="image"
+            ></link>
+            <style>
+              {`
+                .hero-image {
+                  background-image: url('${urlFor(heroBgImg)
+                    .width(450)
+                    .auto("format")
+                    .url()}');
+                }
+              
+                @media (min-width: 450px) {
+                  .hero-image {
+                    background-image: url('${urlFor(heroBgImg)
+                      .width(675)
+                      .auto("format")
+                      .url()}');
+                  }
+                }
+              
+                @media (min-width: 675px) {
+                  .hero-image {
+                    background-image: url('${urlFor(heroBgImg)
+                      .width(900)
+                      .auto("format")
+                      .url()}');
+                  }
+                }
+
+                @media (min-width: 900px) {
+                  .hero-image {
+                    background-image: url('${urlFor(heroBgImg)
+                      .auto("format")
+                      .url()}');
+                  }
+                }
+              `}
+            </style>
+          </>
         ) : null}
       </Head>
       <div className="container">

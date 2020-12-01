@@ -78,7 +78,11 @@ function Layout(props) {
           />
         </noscript>
         {heroBgImg ? (
-          <link rel="preload" href={urlFor(heroBgImg)} as="image"></link>
+          <link
+            rel="preload"
+            href={urlFor(heroBgImg).auto("format").url()}
+            as="image"
+          ></link>
         ) : null}
       </Head>
       <div className="container">

@@ -1,37 +1,24 @@
 export default {
   type: 'object',
-  name: 'articleSection',
-  title: 'Article',
+  name: 'partnerSection',
+  title: 'Partenaire',
   fields: [
-    {
-      name: 'icon',
-      type: 'image',
-      title: 'Icone'
-    },
     {
       name: 'heading',
       type: 'string',
-      title: 'Heading',
+      title: 'Titre',
       localize: true
     },
     {
-      name: 'tagline',
+      name: 'text',
       type: 'simplePortableText',
-      title: 'Tagline',
+      title: 'Texte',
       localize: true
     },
     {
       name: 'image',
       type: 'image',
-      title: 'Image',
-      options: {
-        hotspot: true
-      }
-    },
-    {
-      name: 'cta',
-      title: 'Call to action',
-      type: 'cta'
+      title: 'Image'
     }
   ],
   preview: {

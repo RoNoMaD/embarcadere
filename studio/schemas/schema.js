@@ -23,6 +23,7 @@ import hero from './objects/hero'
 import prestations from './objects/prestations'
 import prestation from './objects/prestation'
 import article from './objects/article'
+import partner from './objects/partner'
 import imageSection from './objects/imageSection'
 import mailchimp from './objects/mailchimp'
 import textSection from './objects/textSection'
@@ -57,5 +58,5 @@ export default createSchema({
     // not set localize: true on root level, or
     // set localize: true on any field level will
     // not be changed.
-    .concat(translateFields([cta, page, hero, article, prestations, prestation]))
+    .concat(translateFields([cta, page, hero, article, prestations, prestation, partner]))
 })

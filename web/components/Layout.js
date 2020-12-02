@@ -23,9 +23,12 @@ function Layout(props) {
   const {
     title,
     mainNavigation,
-    footerNavigation,
-    footerText,
-    logo, 
+    companyName,
+    copyright,
+    footerContact,
+    footerAddress,
+    footerSocialMedias,
+    logo,
     url,
   } = config;
   const logoUrl = logo && logo.asset && logo.asset.url;
@@ -133,7 +136,13 @@ function Layout(props) {
       <div className="container">
         <Header title={title} navItems={mainNavigation} logo={logo} />
         <div className="content">{children}</div>
-        <Footer navItems={footerNavigation} text={footerText} />
+        <Footer
+          companyName={companyName}
+          copyright={copyright}
+          footerContact={footerContact}
+          footerAddress={footerAddress}
+          footerSocialMedias={footerSocialMedias}
+        />
         {logoUrl && url && <LogoJsonLd url={url} logo={logoUrl} />}
       </div>
     </>
@@ -145,8 +154,17 @@ Layout.propTypes = {
   config: PropTypes.shape({
     title: PropTypes.string,
     mainNavigation: PropTypes.arrayOf(PropTypes.object),
-    footerNavigation: PropTypes.arrayOf(PropTypes.object),
-    footerText: PropTypes.arrayOf(PropTypes.object),
+    companyName: PropTypes.string,
+    copyright: PropTypes.string,
+    footerContact: PropTypes.shape({
+      title: PropTypes.string,
+    }),
+    footerAddress: PropTypes.shape({
+      title: PropTypes.string,
+    }),
+    footerSocialMedias: PropTypes.shape({
+      title: PropTypes.string,
+    }),
     logo: PropTypes.shape({
       asset: PropTypes.shape({
         url: PropTypes.string,

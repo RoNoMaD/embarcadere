@@ -23,9 +23,7 @@ export default {
         { type: 'hero' },
         { type: 'prestations' },
         { type: 'articleSection' },
-        { type: 'imageSection' },
-        { type: 'mailchimp' },
-        { type: 'textSection' }
+        { type: 'partnerSection' }
       ]
     },
     {

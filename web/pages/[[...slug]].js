@@ -124,6 +124,7 @@ const pageQuery = groq`
       ...,
       "heading": coalesce(heading[$locale], heading.fr),
       "tagline": coalesce(tagline[$locale],tagline.fr),
+      "text": coalesce(text[$locale],text.fr),
       cta {
         ...,
         "title": coalesce(title[$locale], title.fr),
@@ -173,6 +174,7 @@ export async function getStaticProps({ params }) {
               ...,
               "heading": coalesce(heading[$locale], heading.fr),
               "tagline": coalesce(tagline[$locale],tagline.fr),
+              "text": coalesce(text[$locale],text.fr),
               cta {
                 ...,
                 "title": coalesce(title[$locale], title.fr),

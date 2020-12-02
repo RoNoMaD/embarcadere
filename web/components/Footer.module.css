@@ -1,37 +1,86 @@
-@import '../styles/custom-properties.css';
+@import "../styles/custom-properties.css";
+@import "../styles/custom-media.css";
 
 .root {
-  color: var(--color-black, #333);
-  font-size: var(--font-small-size);
+  padding: var(--space-xl);
+  font-family: "Lato", sans-serif;
+  color: var(--color-white, #fff);
+  background-color: var(--color-dark-gray, #32373e);
+  /* font-size: var(--font-small-size);
   line-height: var(--font-small-line-height);
-  padding: 2rem 0;
+  padding: 2rem 0; */
 }
 
-.items {
-  list-style: none;
+.company {
+  max-width: 1024px;
   display: flex;
-  justify-content: center;
-  margin: 0 0 3rem;
-  padding: 0;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: var(--space-xl);
+  margin-right: auto;
+  margin-left: auto;
 }
 
-.item {
-  @nest & > a {
-    display: block;
-    text-decoration: none;
-    color: inherit;
-    padding: 1.5rem 0.5rem;
+.companyName {
+  text-transform: uppercase;
+  font-family: "Oswald", sans-serif;
+  font-weight: bold;
+}
+
+.copyright {
+}
+.sections {
+  max-width: 1024px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+
+  @media (--media-min-medium) {
+    max-height: 350px;
+  }
+
+  @media (min-width: 1024px) {
+    flex-direction: row;
+    align-items: top;
+    justify-content: space-between;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  & > :last-child {
+    @media (--media-min-medium) {
+      margin-left: auto;
+    }
+    @media (min-width: 1024px) {
+      margin-left: 0;
+    }
+  }
+
+  & > * + * {
+    margin-top: var(--space-l);
+
+    @media (min-width: 1024px) {
+      margin-top: 0;
+      margin-left: var(--space-xl);
+    }
   }
 }
 
-.text {
-  text-align: center;
+.sectionTitle {
+  font-family: "Oswald", sans-serif;
+  /* font-family: "Lato", sans-serif; */
+  font-weight: 400;
+  font-size: 22px;
+  margin-bottom: var(--space-m);
+}
 
-  @nest & p {
-    margin: 1rem 0;
-  }
+.sectionLink {
+  display: block;
+  color: var(--color-white, #fff);
+  text-decoration: none;
 
-  @nest & a {
-    color: inherit;
+  &:hover {
+    text-decoration: underline;
   }
 }

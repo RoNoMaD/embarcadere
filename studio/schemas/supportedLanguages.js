@@ -1,5 +1,5 @@
 const supportedLanguages = [
-  { name: 'fr', title: 'French', isDefault: true },
+  { name: 'fr', title: 'Français', isDefault: true },
   { name: 'en', title: 'English' }
 ]
 export default supportedLanguages

@@ -4,13 +4,23 @@
 
   --font-family-sans: -apple-system, BlinkMacSystemFont, sans-serif;
 
-  --color-black: #202123;
   --color-dark-gray: #32373e;
-  --color-gray: #697a90;
-  --color-light-gray: #b4bcc7;
-  --color-very-light-gray: #e7ebed;
-  --color-white: #fff;
-  --color-accent: #156dff;
+
+  /**
+     Colors 
+   */
+  /* Brand */
+  --color-brand-primary: #81b62e;
+  --color-brand-accent: #fecb00;
+  /* Background */
+  --color-background-primary: #fff;
+  --color-background-secondary: rgba(232, 241, 217, 50%);
+  --color-background-warning: #f9e7cc;
+  /* Text */
+  --color-text-primary: #000;
+  --color-text-inverse: #fff;
+  --color-text-success: #81b62e;
+  --color-text-error: #ea5a06;
 
   /* Typography */
   --unit: 16;
@@ -44,4 +54,13 @@
   --space-l: 16px;
   --space-xl: 32px;
   --space-xxl: 64px;
+
+  /* Diagonal layout */
+  --magic-number: 0.08748; /* tan(5°)/2 */
+  --content-width: 100vw;
+  --skew-padding: calc(var(--content-width) * var(--magic-number));
+
+  @media screen and (min-width: 42em) {
+    --content-width: 42em;
+  }
 }

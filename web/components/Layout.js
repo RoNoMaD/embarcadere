@@ -70,7 +70,7 @@ function Layout(props) {
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Lato&family=Oswald:wght@400;500&&display=swap"
           media="print"
-          onload="this.media='all'"
+          onLoad="this.media='all'"
         />
 
         {/* <!-- [4] --> */}

@@ -7,7 +7,7 @@ const languageField = {
   type: 'object',
   fieldsets: [
     {
-      title: 'Translations',
+      title: 'Traductions',
       name: 'translations',
       options: { collapsible: true }
     }
@@ -21,13 +21,14 @@ const languageField = {
 // and 'media' properties.
 const localizePreview = preview => {
   if (!preview) return null
-  const { select } = preview
+  const { select, prepare } = preview
   if (!select) return null
   return {
     select: {
       ...select,
       ...(select.title && { title: `${select.title}.${baseLanguage.name}` })
-    }
+    },
+    prepare
   }
 }
 
@@ -40,9 +41,11 @@ export const translateFields = docs => {
       // Use the field defined as-is if its not to be translated
       if (!shouldLocalize || field.localize === false) return field
 
+      console.log('field', field)
       return {
         ...languageField,
         name: field.name,
+        title: field.title,
         fields: languages.map((language, i) => ({
           ...field,
           title: language.title,
@@ -52,6 +55,8 @@ export const translateFields = docs => {
         }))
       }
     })
+
+    console.log('fields', fields)
 
     return {
       ...doc,

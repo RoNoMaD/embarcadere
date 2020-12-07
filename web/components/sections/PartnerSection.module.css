@@ -2,14 +2,17 @@
 
 .root {
   position: relative;
+  width: 100vw;
   align-self: stretch;
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 1024px;
 
   @media (--media-min-large) {
+    align-self: center;
     flex-direction: row;
+    max-width: 1024px;
+    min-height: 420px;
   }
 }
 
@@ -19,7 +22,6 @@
   justify-content: center;
 
   @media (--media-min-large) {
-    max-width: initial;
     width: 50%;
     flex: 1 0 50%;
   }
@@ -38,6 +40,10 @@
   align-items: center;
   justify-content: center;
   margin: 0;
+
+  @media (--media-min-large) {
+    width: 50%;
+  }
 }
 
 .text {

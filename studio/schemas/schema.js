@@ -25,8 +25,9 @@ import prestation from './objects/prestation'
 import article from './objects/article'
 import partner from './objects/partner'
 import imageSection from './objects/imageSection'
-import mailchimp from './objects/mailchimp'
 import textSection from './objects/textSection'
+import openingHours from './objects/openingHours'
+import prestationArticle from './objects/prestationArticle'
 import { translateFields } from './fieldTranslation'
 
 // Then we give our schema to the builder and provide the result to Sanity
@@ -41,7 +42,6 @@ export default createSchema({
       imageSection,
       internalLink,
       link,
-      mailchimp,
       portableText,
       route,
       simplePortableText,
@@ -58,5 +58,17 @@ export default createSchema({
     // not set localize: true on root level, or
     // set localize: true on any field level will
     // not be changed.
-    .concat(translateFields([cta, page, hero, article, prestations, prestation, partner]))
+    .concat(
+      translateFields([
+        cta,
+        page,
+        hero,
+        article,
+        prestations,
+        prestation,
+        partner,
+        openingHours,
+        prestationArticle
+      ])
+    )
 })

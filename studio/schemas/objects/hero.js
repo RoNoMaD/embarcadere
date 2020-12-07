@@ -1,12 +1,12 @@
 export default {
   type: 'object',
   name: 'hero',
-  title: 'Hero',
+  title: 'Bannière',
   fields: [
     {
       name: 'heading',
       type: 'string',
-      title: 'Heading',
+      title: 'Titre',
       localize: true
     },
     {
@@ -32,7 +32,7 @@ export default {
     prepare({ title, media }) {
       return {
         title,
-        subtitle: 'Hero section',
+        subtitle: 'Bannière',
         media
       }
     }

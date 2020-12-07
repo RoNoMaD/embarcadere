@@ -14,7 +14,7 @@ class Header extends Component {
     router: PropTypes.shape({
       pathname: PropTypes.string,
       query: PropTypes.shape({
-        slug: PropTypes.string,
+        slug: PropTypes.array,
       }),
       events: PropTypes.any,
     }),

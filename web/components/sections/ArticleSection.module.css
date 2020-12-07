@@ -1,17 +1,5 @@
 @import "../../styles/custom-media.css";
 
-:root {
-  --magic-number: 0.08748; /* tan(5°)/2 */
-  --content-width: 100vw;
-  --skew-padding: calc(var(--content-width) * var(--magic-number));
-}
-
-@media screen and (min-width: 42em) {
-  :root {
-    --content-width: 42em;
-  }
-}
-
 .root {
   align-self: stretch;
   position: relative;
@@ -96,7 +84,7 @@
 }
 
 .root:nth-child(even) .textContainer {
-  background-color: rgba(232, 241, 217, 0.5);
+  background-color: var(--color-background-secondary);
   @media (--media-min-large) {
     order: 1;
   }

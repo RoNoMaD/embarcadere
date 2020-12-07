@@ -28,9 +28,9 @@ function Footer({
         </div>
         <div className={styles.section}>
           <div className={styles.sectionTitle}>{footerSocialMedias.title}</div>
-          {footerSocialMedias.socialMedias.map(({ name, link }) => {
+          {footerSocialMedias.socialMedias.map(({ _key, name, link }) => {
             return (
-              <a href={link} className={styles.sectionLink}>
+              <a key={_key} href={link} className={styles.sectionLink}>
                 {name}
               </a>
             );
@@ -42,6 +42,8 @@ function Footer({
           <a
             href="https://www.google.com/maps/dir/?api=1&destination_place_id=ChIJPxo1dWPaBkgRITFj89lvym4&destination=Embarcadere%20de%20l%27%27Abbaye"
             className={styles.sectionLink}
+            target="_blank"
+            rel="noopener noreferrer"
           >
             Voir l'itinéraire
           </a>

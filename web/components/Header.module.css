@@ -1,5 +1,4 @@
 @import "../styles/custom-media.css";
-@import "../styles/custom-properties.css";
 
 .root {
   position: absolute;
@@ -80,8 +79,8 @@
     left: 0;
     top: 100%;
     width: 100%;
-    background-color: var(--color-white, #fff);
-    color: var(--color-black, #000);
+    background-color: var(--color-background-primary);
+    color: var(--color-text-primary);
 
     @nest .root[data-show-nav="menu"] & {
       display: block;
@@ -163,8 +162,8 @@
   left: 0;
   top: 100%;
   width: 100%;
-  background-color: var(--color-white, #fff);
-  color: var(--color-black, #000);
+  background-color: var(--color-background-primary);
+  color: var(--color-text-primary);
 
   @nest .root[data-show-nav="languages"] & {
     display: block;

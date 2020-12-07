@@ -1,7 +1,7 @@
 export default {
   type: 'object',
   name: 'prestations',
-  title: 'Prestations section',
+  title: 'Prestations',
   fields: [
     {
       name: 'heading',
@@ -24,7 +24,7 @@ export default {
     prepare({ title, media }) {
       return {
         title,
-        subtitle: 'Prestations section',
+        subtitle: 'Prestations',
         media
       }
     }

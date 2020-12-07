@@ -1,26 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
-import imageUrlBuilder from "@sanity/image-url";
 import styles from "./Hero.module.css";
-import client from "../../client";
 import SimpleBlockContent from "../SimpleBlockContent";
 import Cta from "../Cta";
 
-function urlFor(source) {
-  return imageUrlBuilder(client).image(source);
-}
-
 function Hero(props) {
-  const { heading, backgroundImage, tagline, ctas } = props;
-
-  // const style = backgroundImage
-  //   ? {
-  //       backgroundImage: `url("${urlFor(backgroundImage)
-  //         // .width(2000)
-  //         .auto("format")
-  //         .url()}")`,
-  //     }
-  //   : {};
+  const { heading, /*backgroundImage,*/ tagline, ctas } = props;
 
   return (
     <div className={`hero-image ${styles.root}`}>

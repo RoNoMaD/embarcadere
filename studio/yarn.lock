@@ -7941,6 +7941,10 @@ sanity-plugin-dashboard-widget-netlify@^1.0.1:
     abort-controller "^2.0.3"
     react-props-stream "^1.0.0"
 
+sanity-plugin-table@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.npmjs.org/sanity-plugin-table/-/sanity-plugin-table-1.0.1.tgz#76b28667101652bc3ec7aa58b6dce1787dd037f2"
+
 sax@~1.2.4:
   version "1.2.4"
   resolved "https://registry.npmjs.org/sax/-/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"

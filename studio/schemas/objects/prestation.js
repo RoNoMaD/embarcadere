@@ -6,7 +6,7 @@ export default {
     {
       name: 'heading',
       type: 'string',
-      title: 'Heading',
+      title: 'Nom',
       localize: true
     },
     {

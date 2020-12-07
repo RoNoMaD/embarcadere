@@ -12,13 +12,13 @@ export default {
   ],
   fields: [
     {
-      title: 'Title',
+      title: 'Titre',
       name: 'title',
       type: 'string',
       localize: true
     },
     {
-      title: 'Internal link',
+      title: 'Lien interne',
       description: 'Use this to link between pages on the website',
       name: 'route',
       type: 'reference',
@@ -26,7 +26,7 @@ export default {
       fieldset: 'link'
     },
     {
-      title: 'External link',
+      title: 'Lien externe',
       name: 'link',
       type: 'url',
       fieldset: 'link'

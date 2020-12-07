@@ -12,18 +12,20 @@ export default {
     {
       name: 'title',
       type: 'string',
-      title: 'Title',
+      title: 'Titre',
       localize: true
     },
     {
       name: 'content',
       type: 'array',
-      title: 'Page sections',
+      title: 'Contenu',
       of: [
         { type: 'hero' },
         { type: 'prestations' },
         { type: 'articleSection' },
-        { type: 'partnerSection' }
+        { type: 'partnerSection' },
+        { type: 'openingHours' },
+        { type: 'prestationArticle' }
       ]
     },
     {

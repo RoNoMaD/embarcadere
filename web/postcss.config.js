@@ -1,13 +1,19 @@
-module.exports = ({ file, options, env }) => ({
-  plugins: {
-    "postcss-import": {},
-    cssnano: env === "production" ? {} : false,
-    "postcss-preset-env": {
-      stage: 0,
-      features: {
-        "color-mod-function": { unresolved: "warn" },
-        "nesting-rules": true,
+module.exports = {
+  plugins: [
+    "postcss-flexbugs-fixes",
+    [
+      "postcss-preset-env",
+      {
+        autoprefixer: {
+          flexbox: "no-2009",
+        },
+        stage: 3,
+        features: {
+          "custom-properties": false,
+          "nesting-rules": true,
+          "custom-media-queries": true,
+        },
       },
-    },
-  },
-});
+    ],
+  ],
+};

@@ -42,7 +42,7 @@ export default {
     prepare({ title, media }) {
       return {
         title,
-        subtitle: 'Article section',
+        subtitle: 'Article',
         media
       }
     }

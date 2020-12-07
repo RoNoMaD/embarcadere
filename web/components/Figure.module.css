@@ -1,5 +1,4 @@
 @import "../styles/custom-media.css";
-@import '../styles/custom-properties.css';
 
 .root {
   position: relative;
@@ -64,8 +63,8 @@
 }
 
 .captionBox {
-  background-color: var(--color-white);
-  border: 1px solid var(--color-black);
+  background-color: var(--color-background-primary);
+  border: 1px solid var(--color-text-primary);
   padding: 1.5rem;
 
   @media (--media-min-medium) {

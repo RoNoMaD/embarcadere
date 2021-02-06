@@ -1,0 +1,79 @@
+.prestation {
+  position: relative;
+}
+
+.price {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: grid;
+  width: 170px;
+
+  & > * {
+    grid-area: 1/1;
+  }
+}
+
+.priceText {
+  padding: var(--space-m) 0 var(--space-l) var(--space-l);
+}
+
+.priceLabel {
+  font-size: 20px;
+  font-family: "Lato", sans-serif;
+}
+
+.startingPrice {
+  display: flex;
+  align-items: stretch;
+}
+
+.startingPriceInteger {
+  font-weight: 500;
+  font-size: 46px;
+  font-family: "Oswald", sans-serif;
+  line-height: 1;
+  letter-spacing: 2px;
+}
+
+.startingPriceRight {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: var(--space-s) 0 var(--space-xs) 0;
+}
+
+.startingPriceDecimal {
+  font-weight: 500;
+  font-size: 20px;
+  font-family: "Oswald", sans-serif;
+  line-height: 1;
+}
+
+.startingPriceCurrency {
+  font-weight: 500;
+  font-size: 20px;
+  font-family: "Oswald", sans-serif;
+  line-height: 1;
+}
+
+.priceUnit {
+  font-size: 14px;
+  font-family: "Lato", sans-serif;
+}
+
+.image {
+  display: block;
+  object-fit: cover;
+  width: 100%;
+  max-height: 38vw;
+}
+
+.content {
+  padding: var(--space-l);
+  background-color: var(--color-background-secondary);
+
+  & > * + * {
+    margin-top: var(--space-m);
+  }
+}

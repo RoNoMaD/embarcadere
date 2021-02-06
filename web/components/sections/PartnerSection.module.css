@@ -2,15 +2,15 @@
 
 .root {
   position: relative;
-  width: 100vw;
-  align-self: stretch;
   display: flex;
   flex-direction: column;
   align-items: center;
+  align-self: stretch;
+  width: 100vw;
 
   @media (--media-min-large) {
-    align-self: center;
     flex-direction: row;
+    align-self: center;
     max-width: 1024px;
     min-height: 420px;
   }
@@ -22,23 +22,23 @@
   justify-content: center;
 
   @media (--media-min-large) {
-    width: 50%;
     flex: 1 0 50%;
+    width: 50%;
   }
 }
 
 .image {
-  margin: var(--space-l) auto;
   max-width: 300px;
+  margin: var(--space-l) auto;
 }
 
 .textContainer {
-  max-width: 50ch;
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  max-width: 50ch;
   margin: 0;
 
   @media (--media-min-large) {

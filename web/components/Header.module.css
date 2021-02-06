@@ -3,12 +3,12 @@
 .root {
   position: absolute;
   top: 0;
-  left: 0;
   right: 0;
-  color: var(--color-white, #fff);
+  left: 0;
+  z-index: 2;
   display: flex;
   margin: 0 auto;
-  z-index: 2;
+  color: var(--color-white, #fff);
 }
 
 .root a {
@@ -17,12 +17,6 @@
 }
 
 .branding {
-  font-size: inherit;
-  font-weight: inherit;
-  text-transform: uppercase;
-  margin: 0;
-  padding: 0;
-
   @nest & > a {
     display: block;
     padding: 1.5em;
@@ -33,15 +27,21 @@
   }
 
   @nest & img, & svg {
-    height: calc(var(--font-base-line-height) * 1.5rem);
-    width: auto;
-    color: inherit;
     vertical-align: top;
+    width: auto;
+    height: calc(var(--font-base-line-height) * 1.5rem);
+    color: inherit;
   }
 
   @nest & svg path {
     fill: currentColor;
   }
+
+  margin: 0;
+  padding: 0;
+  font-weight: inherit;
+  font-size: inherit;
+  text-transform: uppercase;
 
   @media (--media-max-medium) {
     flex: 1;
@@ -59,8 +59,12 @@
 }
 
 .navItems {
-  padding: 0;
   margin: 0;
+  padding: 0;
+
+  @supports (padding-top: env(safe-area-inset-top)) {
+    padding-right: calc(env(safe-area-inset-right) + 1rem);
+  }
 
   @media (--media-min-medium) {
     display: flex;
@@ -68,52 +72,43 @@
     padding: 0 1rem;
   }
 
-  @supports (padding-top: env(safe-area-inset-top)) {
-    padding-right: calc(env(safe-area-inset-right) + 1rem);
-  }
-
   @media (--media-max-medium) {
-    z-index: 10;
-    display: none;
-    position: absolute;
-    left: 0;
-    top: 100%;
-    width: 100%;
-    background-color: var(--color-background-primary);
-    color: var(--color-text-primary);
-
     @nest .root[data-show-nav="menu"] & {
       display: block;
     }
+
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 10;
+    display: none;
+    width: 100%;
+    background-color: var(--color-background-primary);
+    color: var(--color-text-primary);
   }
 }
 
 .navItem {
-  display: flex;
-  white-space: nowrap;
-  align-items: stretch;
-  line-height: calc(var(--font-base-line-height) * 1.5rem);
-
   @nest & > a {
-    display: block;
     position: relative;
+    display: block;
     padding: 1.5rem 0.5rem;
 
     @media (--media-max-medium) {
-      padding: 1rem 1.5rem;
-      width: 100%;
-      box-sizing: border-box;
-      text-align: right;
-
       @nest &[data-is-active="true"]::before {
         content: "";
-        width: 100%;
-        height: 1px;
         position: absolute;
         bottom: 0.5rem;
         left: 0;
+        width: 100%;
+        height: 1px;
         background-color: var(--color-white, #fff);
       }
+
+      box-sizing: border-box;
+      width: 100%;
+      padding: 1rem 1.5rem;
+      text-align: right;
     }
   }
 
@@ -121,20 +116,25 @@
     display: none;
   }
 
+  display: flex;
+  align-items: stretch;
+  line-height: calc(var(--font-base-line-height) * 1.5rem);
+  white-space: nowrap;
+
   @media (--media-min-medium) {
     margin-left: 0.5rem;
   }
 }
 
 .showNavButton {
-  appearance: none;
-  border: none;
-  font: inherit;
-  background: none;
-  color: inherit;
   margin: 0;
   padding: 1.5rem;
+  border: none;
+  background: none;
+  color: inherit;
   outline: none;
+  font: inherit;
+  appearance: none;
 
   @media (--media-min-medium) {
     display: none;
@@ -142,43 +142,40 @@
 }
 
 .hamburgerIcon {
-  font-size: calc(var(--font-base-line-height) * 1.5rem);
   display: block;
+  font-size: calc(var(--font-base-line-height) * 1.5rem);
 
   @media (--media-min-medium) {
     display: none;
   }
 }
 
-.navLanguages {
-}
-
 .navLanguagesItems {
-  padding: 0;
-  margin: 0;
-  z-index: 10;
-  display: none;
-  position: absolute;
-  left: 0;
-  top: 100%;
-  width: 100%;
-  background-color: var(--color-background-primary);
-  color: var(--color-text-primary);
-
   @nest .root[data-show-nav="languages"] & {
     display: block;
   }
+
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 10;
+  display: none;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-background-primary);
+  color: var(--color-text-primary);
 }
 
 .showNavLanguagesButton {
-  appearance: none;
-  border: none;
-  font: inherit;
-  background: none;
-  color: inherit;
+  height: 100%;
   margin: 0;
   padding: 1.5rem;
+  border: none;
+  background: none;
+  color: inherit;
   outline: none;
-  height: 100%;
+  font: inherit;
   cursor: pointer;
+  appearance: none;
 }

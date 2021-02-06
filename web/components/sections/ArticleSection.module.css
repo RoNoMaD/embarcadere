@@ -1,19 +1,19 @@
 @import "../../styles/custom-media.css";
 
 .root {
-  align-self: stretch;
   position: relative;
+  align-self: stretch;
   overflow: hidden;
   margin: calc(100vw * var(--magic-number)) 0;
   transform: skewY(-5deg);
 
   @media (--media-min-large) {
-    align-self: center;
     display: flex;
-    transform: none;
-    margin: 0;
-    min-height: 420px;
+    align-self: center;
     max-width: 1024px;
+    min-height: 420px;
+    margin: 0;
+    transform: none;
   }
 
   & > * {
@@ -26,19 +26,19 @@
 }
 
 .image {
-  object-fit: cover;
   position: absolute;
-  left: 0;
   top: calc(-1 * calc(100vw * var(--magic-number)));
+  left: 0;
+  object-fit: cover;
   width: 100%;
   height: calc(100% + calc(100vw * var(--magic-number)) * 2);
 
   @media (--media-min-large) {
     position: relative;
     top: 0;
+    flex: 0 0 auto;
     width: 50%;
     height: auto;
-    flex: 0 0 auto;
   }
 }
 
@@ -48,13 +48,13 @@
   margin: calc(2rem + var(--skew-padding)) auto;
 
   @media (--media-min-large) {
-    width: 50%;
-    max-width: initial;
-    flex: 0 0 auto;
     display: flex;
+    flex: 0 0 auto;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 50%;
+    max-width: initial;
     margin: 0;
   }
 }
@@ -65,14 +65,14 @@
   align-items: center;
   justify-content: center;
   padding: 2rem;
-  background-color: rgba(255, 255, 255, 0.8);
-  text-align: center;
   border-radius: 10px;
-  box-shadow: 0px 4px 100px rgba(0, 0, 0, 0.25);
+  background-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 4px 100px rgba(0, 0, 0, 0.25);
+  text-align: center;
 
   @media (--media-min-large) {
-    background-color: transparent;
     border-radius: none;
+    background-color: transparent;
     box-shadow: none;
     text-align: left;
   }
@@ -85,6 +85,7 @@
 
 .root:nth-child(even) .textContainer {
   background-color: var(--color-background-secondary);
+
   @media (--media-min-large) {
     order: 1;
   }

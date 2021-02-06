@@ -26,16 +26,20 @@ function Footer({
             {footerContact.email}
           </a>
         </div>
-        <div className={styles.section}>
-          <div className={styles.sectionTitle}>{footerSocialMedias.title}</div>
-          {footerSocialMedias.socialMedias.map(({ _key, name, link }) => {
-            return (
-              <a key={_key} href={link} className={styles.sectionLink}>
-                {name}
-              </a>
-            );
-          })}
-        </div>
+        {footerSocialMedias.socialMedias ? (
+          <div className={styles.section}>
+            <div className={styles.sectionTitle}>
+              {footerSocialMedias.title}
+            </div>
+            {footerSocialMedias.socialMedias.map(({ _key, name, link }) => {
+              return (
+                <a key={_key} href={link} className={styles.sectionLink}>
+                  {name}
+                </a>
+              );
+            })}
+          </div>
+        ) : null}
         <div className={styles.section}>
           <div className={styles.sectionTitle}>{footerAddress.title}</div>
           <SimpleBlockContent blocks={footerAddress.address} />
@@ -59,6 +63,7 @@ function Footer({
             allowFullScreen
             aria-hidden="false"
             tabIndex="0"
+            loading="lazy"
           ></iframe>
         </div>
       </div>
@@ -75,6 +80,8 @@ Footer.propTypes = {
   copyright: PropTypes.string,
   footerContact: PropTypes.shape({
     title: PropTypes.string,
+    phone: PropTypes.string,
+    email: PropTypes.string,
   }),
   footerAddress: PropTypes.shape({
     title: PropTypes.string,

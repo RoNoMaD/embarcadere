@@ -1,18 +1,18 @@
 @import "../../styles/custom-media.css";
 
 .root {
-  align-self: stretch;
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
+  align-self: stretch;
   overflow: hidden;
   padding: 84px var(--space-m);
-  color: var(--color-text-inverse, #fff);
   background-color: var(--color-text-primary, #000);
+  background-position: center top;
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center top;
+  color: var(--color-text-inverse, #fff);
 
   @media (--media-min-small) {
     min-height: 280px;
@@ -40,10 +40,10 @@
   @media (--media-max-large) {
     content: "";
     position: absolute;
-    left: 0;
     top: calc(100% - 100vw * 0.08748);
     right: 0;
     bottom: calc(-1 * 100vw * 0.08748);
+    left: 0;
     background-color: var(--color-background-primary, #fff);
     transform: skewY(-5deg);
     transform-origin: 50% 0;
@@ -52,13 +52,13 @@
 
 .content {
   position: relative;
-  width: 100%;
-  max-width: var(--width-small);
+  z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   box-sizing: border-box;
-  z-index: 1;
+  width: 100%;
+  max-width: var(--width-small);
   text-align: center;
 }
 
@@ -76,10 +76,11 @@
 .tagline {
   max-width: 31ch;
   margin: 0;
-  margin-bottom: 1rem;
   margin-top: 0.5em;
+  margin-bottom: 1rem;
   padding: 0 var(--space-m);
   font-size: 16px;
+
   /* text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5); */
 
   @media (--media-min-large) {

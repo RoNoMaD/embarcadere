@@ -10,20 +10,20 @@
 }
 
 .label {
+  margin-top: 1em;
   font-size: var(--font-micro-size);
   line-height: var(--font-micro-line-height);
   letter-spacing: 0.5px;
   text-transform: uppercase;
-  margin-top: 1em;
-}
-
-.label + .title {
-  margin-top: 0.2em;
 }
 
 .title {
   font-size: var(--font-title3-size);
   line-height: var(--font-title3-line-height);
+}
+
+.label + .title {
+  margin-top: 0.2em;
 }
 
 .image {
@@ -32,30 +32,30 @@
 }
 
 .content {
-  position: relative;
-  margin: 0 1.5rem;
-  max-width: var(--width-medium);
-
   @nest & figcaption {
-    width: 100%;
     box-sizing: border-box;
+    width: 100%;
   }
 
-  @media (--media-min-medium) {
-    margin: 0 auto;
-    padding-top: 2rem;
+  position: relative;
+  max-width: var(--width-medium);
+  margin: 0 1.5rem;
 
+  @media (--media-min-medium) {
     @nest & figcaption {
       position: absolute;
       top: 0;
     }
+
+    margin: 0 auto;
+    padding-top: 2rem;
   }
 }
 
 .caption {
+  box-sizing: border-box;
   width: 100%;
   margin: 0 auto;
-  box-sizing: border-box;
 
   @media (--media-min-medium) {
     max-width: calc(var(--width-small) - 3rem);
@@ -63,9 +63,9 @@
 }
 
 .captionBox {
-  background-color: var(--color-background-primary);
-  border: 1px solid var(--color-text-primary);
   padding: 1.5rem;
+  border: 1px solid var(--color-text-primary);
+  background-color: var(--color-background-primary);
 
   @media (--media-min-medium) {
     max-width: calc((var(--width-small) / 2) - 3rem);

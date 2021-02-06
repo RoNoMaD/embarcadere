@@ -1,10 +1,10 @@
 .button {
-  color: inherit;
   display: block;
-  border-radius: 5px;
-  border: 1px solid currentColor;
-  background-color: transparent;
-  padding: 0.75em 1.5em;
-  text-decoration: inherit;
   max-width: fit-content;
+  padding: 0.75em 1.5em;
+  border: 1px solid currentColor;
+  border-radius: 5px;
+  background-color: transparent;
+  color: inherit;
+  text-decoration: inherit;
 }

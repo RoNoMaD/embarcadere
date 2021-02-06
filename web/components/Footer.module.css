@@ -2,38 +2,33 @@
 
 .root {
   padding: var(--space-xl);
-  font-family: "Lato", sans-serif;
-  color: var(--color-white, #fff);
   background-color: var(--color-dark-gray, #32373e);
-  /* font-size: var(--font-small-size);
-  line-height: var(--font-small-line-height);
-  padding: 2rem 0; */
+  color: var(--color-white, #fff);
+  font-family: "Lato", sans-serif;
 }
 
 .company {
-  max-width: 1024px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+  max-width: 1024px;
   margin-top: var(--space-xl);
   margin-right: auto;
   margin-left: auto;
 }
 
 .companyName {
-  text-transform: uppercase;
-  font-family: "Oswald", sans-serif;
   font-weight: bold;
+  font-family: "Oswald", sans-serif;
+  text-transform: uppercase;
 }
 
-.copyright {
-}
 .sections {
-  max-width: 1024px;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
+  max-width: 1024px;
 
   @media (--media-min-medium) {
     max-height: 350px;
@@ -51,6 +46,7 @@
     @media (--media-min-medium) {
       margin-left: auto;
     }
+
     @media (min-width: 1024px) {
       margin-left: 0;
     }
@@ -66,12 +62,17 @@
   }
 }
 
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
 .sectionTitle {
-  font-family: "Oswald", sans-serif;
-  /* font-family: "Lato", sans-serif; */
+  margin-bottom: var(--space-m);
   font-weight: 400;
   font-size: 22px;
-  margin-bottom: var(--space-m);
+  font-family: "Oswald", sans-serif;
 }
 
 .sectionLink {
@@ -81,5 +82,23 @@
 
   &:hover {
     text-decoration: underline;
+    text-decoration-color: var(--color-background-secondary, #fff);
+
+    @supports (
+      (-webkit-text-decoration-skip: ink) or (text-decoration-skip-ink: auto)
+    ) {
+      text-underline-offset: 0.15em;
+      -webkit-text-decoration-skip: ink;
+      text-decoration-skip-ink: auto;
+    }
+  }
+
+  &:focus {
+    outline: 1px dotted currentColor;
+    outline-offset: 0.15em;
+
+    &:not(:focus-visible) {
+      outline: none;
+    }
   }
 }

@@ -64,7 +64,7 @@ function Footer({
         <div ref={intersectionRef} className={styles.section}>
           {intersection && intersection.intersectionRatio < 1 ? (
             <img
-              src="../images/embarcadere_map.png"
+              src="/images/embarcadere_map.png"
               width="300"
               height="300"
               alt="carte de l'embarcadère"

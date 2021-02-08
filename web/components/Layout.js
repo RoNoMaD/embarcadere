@@ -56,7 +56,11 @@ function Layout(props) {
         */}
 
         {/* <!-- [1] --> */}
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="true"
+        />
 
         {/* <!-- [2] --> */}
         <link
@@ -82,7 +86,11 @@ function Layout(props) {
         </noscript>
         {heroBgImg ? (
           <>
-            <link rel="preconnect" href="https://cdn.sanity.io" crossorigin />
+            <link
+              rel="preconnect"
+              href="https://cdn.sanity.io"
+              crossOrigin="true"
+            />
             <link
               rel="preload"
               href={urlFor(heroBgImg).width(750).auto("format").url()}

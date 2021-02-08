@@ -23,7 +23,8 @@
     "next-seo": "^4.19.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-inlinesvg": "^2.2.2"
+    "react-inlinesvg": "^2.2.2",
+    "react-use": "^17.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.13",

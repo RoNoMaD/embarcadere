@@ -2,12 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import BlockContent from "@sanity/block-content-to-react";
 import client from "../client";
-import serializers from "./serializers";
+import customSerializers from "./serializers";
 
 const { projectId, dataset } = client.config();
 
 function SimpleBlockContent(props) {
-  const { blocks } = props;
+  const { blocks, serializers } = props;
 
   if (!blocks) {
     console.error("Missing blocks");
@@ -17,7 +17,7 @@ function SimpleBlockContent(props) {
   return (
     <BlockContent
       blocks={blocks}
-      serializers={serializers}
+      serializers={{ ...customSerializers, ...serializers }}
       projectId={projectId}
       dataset={dataset}
     />

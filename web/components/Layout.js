@@ -143,7 +143,7 @@ function Layout(props) {
       </Head>
       <div className="container">
         <Header title={title} navItems={mainNavigation} logo={logo} />
-        <div className="content">{children}</div>
+        <main className="content">{children}</main>
         <Footer
           companyName={companyName}
           copyright={copyright}

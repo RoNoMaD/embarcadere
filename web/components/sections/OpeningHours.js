@@ -12,7 +12,7 @@ function urlFor(source) {
 
 function OpeningHours({ heading, backgroundImage, ranges }) {
   return (
-    <div className={`opening-hours-background ${styles.root}`}>
+    <article className={`opening-hours-background ${styles.root}`}>
       <Head>
         <style
           dangerouslySetInnerHTML={{
@@ -52,12 +52,12 @@ function OpeningHours({ heading, backgroundImage, ranges }) {
               <div key={_key} className={styles.range}>
                 <div className={styles.monthsRanges}>
                   {monthsRanges.map((monthsRange, index) => (
-                    <div key={index}>{monthsRange}</div>
+                    <p key={index}>{monthsRange}</p>
                   ))}
                 </div>
                 <div className={styles.hoursRanges}>
                   {hoursRanges.map((hoursRange, index) => (
-                    <div key={index}>{hoursRange}</div>
+                    <p key={index}>{hoursRange}</p>
                   ))}
                 </div>
               </div>
@@ -65,7 +65,7 @@ function OpeningHours({ heading, backgroundImage, ranges }) {
           })}
         </div>
       </div>
-    </div>
+    </article>
   );
 }
 

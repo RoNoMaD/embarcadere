@@ -1,4 +1,4 @@
-@import "../styles/custom-media.css";
+@import "../styles/01-design-tokens/media-breakpoints.css";
 
 .root {
   position: absolute;
@@ -105,7 +105,6 @@
         background-color: var(--color-white, #fff);
       }
 
-      box-sizing: border-box;
       width: 100%;
       padding: 1rem 1.5rem;
       text-align: right;

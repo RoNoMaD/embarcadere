@@ -1,0 +1,8 @@
+:root {
+  /* Widths */
+  --width-x-small: 20em;
+  --width-small: 40em;
+  --width-medium: 60em;
+  --width-large: 80em;
+  --width-x-large: 100em;
+}

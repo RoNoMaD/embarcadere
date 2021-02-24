@@ -12,7 +12,7 @@ function Prestations(props) {
   const { heading, content } = props;
 
   return (
-    <div className={styles.root}>
+    <section className={styles.root}>
       <h2 className={styles.heading}>{heading}</h2>
       <div className={styles.content}>
         {content.map((prestation) => {
@@ -31,7 +31,7 @@ function Prestations(props) {
               }}
             >
               <h3 className={styles.title}>{prestation.heading}</h3>
-              <div className={styles.price}>{prestation.price}</div>
+              <p className={styles.price}>{prestation.price}</p>
               {prestation.cta && prestation.cta.route && (
                 <Cta className={styles.cta} {...prestation.cta} />
               )}
@@ -39,7 +39,7 @@ function Prestations(props) {
           );
         })}
       </div>
-    </div>
+    </section>
   );
 }
 

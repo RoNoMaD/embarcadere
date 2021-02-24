@@ -11,9 +11,9 @@ function Hero(props) {
     <div className={`hero-image ${styles.root}`}>
       <div className={styles.content}>
         <h1 className={styles.title}>{heading}</h1>
-        <div className={styles.tagline}>
+        <p className={styles.tagline}>
           {tagline && <SimpleBlockContent blocks={tagline} />}
-        </div>
+        </p>
         {ctas && (
           <div className={styles.ctas}>
             {ctas.map((cta) => (

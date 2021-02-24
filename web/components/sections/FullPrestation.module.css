@@ -1,5 +1,16 @@
 .prestation {
   position: relative;
+  /* max-width: 60ch; */
+
+  & > * {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  & > * > * {
+    flex-grow: 1;
+    flex-basis: calc((30rem - 100%) * 999);
+  }
 }
 
 .price {
@@ -65,12 +76,14 @@
 .image {
   display: block;
   object-fit: cover;
-  width: 100%;
-  max-height: 38vw;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 3/2;
 }
 
 .content {
-  padding: var(--space-l);
+  padding: var(--space-xl);
   background-color: var(--color-background-secondary);
 
   & > * + * {

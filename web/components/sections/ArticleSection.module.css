@@ -1,4 +1,4 @@
-@import "../../styles/custom-media.css";
+@import "../../styles/01-design-tokens/media-breakpoints.css";
 
 .root {
   position: relative;
@@ -10,7 +10,6 @@
   @media (--media-min-large) {
     display: flex;
     align-self: center;
-    max-width: 1024px;
     min-height: 420px;
     margin: 0;
     transform: none;
@@ -84,10 +83,9 @@
 }
 
 .root:nth-child(even) .textContainer {
-  background-color: var(--color-background-secondary);
-
   @media (--media-min-large) {
     order: 1;
+    background-color: var(--color-background-secondary);
   }
 }
 

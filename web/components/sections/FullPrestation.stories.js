@@ -11,6 +11,8 @@ export const Primary = Template.bind({});
 Primary.args = {
   image:
     "https://www.marais-poitevin-tourisme.com/files/2013/03/DSCN9959-1024x768.jpg",
+  imageWidth: 1024,
+  imageHeight: 768,
   title: "La Balade Traditionnelle avec Batelier",
   description:
     "1h, 1h30, 2h ou 3h de barque avec un batelier “rien que pour vous”, avec un commentaire sur l’Histoire du marais poitevin, la faune, la flore et les traditions de cet extraordinaire milieu, la Venise Verte.",

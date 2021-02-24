@@ -1,21 +1,7 @@
-@import "./custom-properties.css";
-@import "./custom-media.css";
+@import "./01-design-tokens";
+@import "./02-generics";
+@import "./03-elements";
 
-html {
-  font-size: var(--font-base-size);
-  font-family: "Lato", sans-serif;
-  line-height: var(--font-base-line-height);
-}
-
-body {
-  margin: 0;
-  background: var(--color-background-primary);
-  color: var(--color-text-primary);
-  -webkit-font-smoothing: antialiased;
-}
-
-html,
-body,
 #__next,
 .container {
   height: 100%;
@@ -31,44 +17,8 @@ body,
   flex-direction: column;
   align-items: center;
   min-height: calc(100% - 84px - 218px);
-}
 
-h1,
-h2 {
-  margin: 0;
-  font-family: "Oswald", sans-serif;
-}
-
-h1 {
-  font-weight: 500;
-  font-size: 28px;
-
-  @media (--media-min-medium) {
-    font-size: 72px;
-  }
-}
-
-h2 {
-  font-weight: 400;
-  font-size: 28px;
-  line-height: 140.6%;
-  letter-spacing: normal;
-
-  @media (--media-min-medium) {
-    font-size: 46px;
-  }
-}
-
-h3 {
-  font-family: "Lato", sans-serif;
-}
-
-p {
-  margin: 0;
-  font-size: 16px;
-  font-family: "Lato", sans-serif;
-
-  @media (--media-min-medium) {
-    font-size: 20px;
+  & > * + * {
+    max-width: 1024px;
   }
 }

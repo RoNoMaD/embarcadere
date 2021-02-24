@@ -1,4 +1,4 @@
-@import "../styles/custom-media.css";
+@import "../styles/01-design-tokens/media-breakpoints.css";
 
 .root {
   position: relative;
@@ -33,7 +33,6 @@
 
 .content {
   @nest & figcaption {
-    box-sizing: border-box;
     width: 100%;
   }
 
@@ -53,7 +52,6 @@
 }
 
 .caption {
-  box-sizing: border-box;
   width: 100%;
   margin: 0 auto;
 

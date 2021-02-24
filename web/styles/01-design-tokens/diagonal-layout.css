@@ -1,0 +1,10 @@
+:root {
+  /* Diagonal layout */
+  --magic-number: 0.08748; /* tan(5°)/2 */
+  --content-width: 100vw;
+  --skew-padding: calc(var(--content-width) * var(--magic-number));
+
+  @media screen and (min-width: 42em) {
+    --content-width: 42em;
+  }
+}

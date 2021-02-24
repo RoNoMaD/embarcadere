@@ -1,0 +1,10 @@
+html {
+  font-size: var(--font-base-size);
+  font-family: "Lato", sans-serif;
+  line-height: var(--font-base-line-height);
+}
+
+body {
+  background: var(--color-background-primary);
+  color: var(--color-text-primary);
+}

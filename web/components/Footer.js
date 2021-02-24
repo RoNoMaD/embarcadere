@@ -5,6 +5,7 @@ import { useIntersection } from "react-use";
 import SimpleBlockContent from "./SimpleBlockContent";
 
 import styles from "./Footer.module.css";
+import { Container } from "postcss";
 
 function Footer({
   companyName,
@@ -25,25 +26,28 @@ function Footer({
   }
 
   return (
-    <div className={styles.root}>
+    <footer className={styles.root}>
       <div className={styles.sections}>
         <div className={styles.section}>
-          <div className={styles.sectionTitle}>{footerContact.title}</div>
-          <a href={`tel:${footerContact.phone}`} className={styles.sectionLink}>
-            {footerContact.phone}
-          </a>
-          <a
-            href={`mailto:${footerContact.email}`}
-            className={styles.sectionLink}
-          >
-            {footerContact.email}
-          </a>
+          <h4 className={styles.sectionTitle}>{footerContact.title}</h4>
+          <address>
+            <a
+              href={`tel:${footerContact.phone}`}
+              className={styles.sectionLink}
+            >
+              {footerContact.phone}
+            </a>
+            <a
+              href={`mailto:${footerContact.email}`}
+              className={styles.sectionLink}
+            >
+              {footerContact.email}
+            </a>
+          </address>
         </div>
         {footerSocialMedias.socialMedias ? (
           <div className={styles.section}>
-            <div className={styles.sectionTitle}>
-              {footerSocialMedias.title}
-            </div>
+            <h4 className={styles.sectionTitle}>{footerSocialMedias.title}</h4>
             {footerSocialMedias.socialMedias.map(({ _key, name, link }) => {
               return (
                 <a key={_key} href={link} className={styles.sectionLink}>
@@ -54,8 +58,11 @@ function Footer({
           </div>
         ) : null}
         <div className={styles.section}>
-          <div className={styles.sectionTitle}>{footerAddress.title}</div>
-          <SimpleBlockContent blocks={footerAddress.address} />
+          <h4 className={styles.sectionTitle}>{footerAddress.title}</h4>
+          <SimpleBlockContent
+            blocks={footerAddress.address}
+            serializers={{ container: "address" }}
+          />
           <a
             href="https://www.google.com/maps/dir/?api=1&destination_place_id=ChIJPxo1dWPaBkgRITFj89lvym4&destination=Embarcadere%20de%20l%27%27Abbaye"
             className={styles.sectionLink}
@@ -86,10 +93,10 @@ function Footer({
         </div>
       </div>
       <div className={styles.company}>
-        <div className={styles.companyName}>{companyName}</div>
-        <div className={styles.copyright}>{copyright}</div>
+        <p className={styles.companyName}>{companyName}</p>
+        <p className={styles.copyright}>{copyright}</p>
       </div>
-    </div>
+    </footer>
   );
 }
 

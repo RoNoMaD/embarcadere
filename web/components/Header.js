@@ -87,12 +87,12 @@ class Header extends Component {
         : "";
 
     return (
-      <div className={styles.root} data-show-nav={showNav}>
-        <h1 className={styles.branding}>
+      <header className={styles.root} data-show-nav={showNav}>
+        <div className={styles.branding}>
           <Link href={`/${locale}`}>
             <a title={title}>{this.renderLogo(logo)}</a>
           </Link>
-        </h1>
+        </div>
         <nav className={styles.nav}>
           <ul className={styles.navItems}>
             {navItems &&
@@ -155,7 +155,7 @@ class Header extends Component {
             {locale === "" ? "Français" : "English"}
           </button>
         </nav>
-      </div>
+      </header>
     );
   }
 }

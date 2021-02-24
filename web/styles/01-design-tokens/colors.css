@@ -1,0 +1,19 @@
+:root {
+  /* Brand */
+  --color-brand-primary: #81b62e;
+  --color-brand-accent: #fecb00;
+
+  /* Background */
+  --color-background-primary: #fff;
+  --color-background-secondary: rgba(232, 241, 217, 50%);
+  --color-background-warning: #f9e7cc;
+
+  /* Text */
+  --color-text-primary: #000;
+  --color-text-inverse: #fff;
+  --color-text-success: #81b62e;
+  --color-text-error: #ea5a06;
+
+  /* Grayscale */
+  --color-dark-gray: #32373e;
+}

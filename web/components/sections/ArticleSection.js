@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { useIntersection } from "react-use";
 import imageUrlBuilder from "@sanity/image-url";
 import client from "../../client";
 import SimpleBlockContent from "../SimpleBlockContent";
@@ -9,8 +10,22 @@ import styles from "./ArticleSection.module.css";
 
 const builder = imageUrlBuilder(client);
 
-function ArticleSection(props) {
-  const { icon, heading, tagline, image, cta } = props;
+function ArticleSection({ icon, heading, tagline, image, cta }) {
+  const [isClient, setClient] = React.useState(false);
+  React.useEffect(() => {
+    setClient(true);
+  }, []);
+  const [animateText, setAnimateText] = React.useState(false);
+  const intersectionRef = React.useRef(null);
+  const intersection = useIntersection(intersectionRef, {
+    root: null,
+    rootMargin: "0px",
+    threshold: 0,
+  });
+
+  if (intersection && intersection.isIntersecting && !animateText) {
+    setAnimateText(true);
+  }
 
   return (
     <div className={styles.root}>
@@ -20,14 +35,21 @@ function ArticleSection(props) {
         alt={heading}
         loading="lazy"
       />
-      <div className={styles.textContainer}>
-        <div className={styles.text}>
-          <img
-            width="77"
-            src={builder.image(icon).auto("format").url()}
-            alt=""
-            loading="lazy"
-          />
+      <div ref={intersectionRef} className={styles.textContainer}>
+        <div
+          className={`${styles.text} ${
+            animateText ? styles.animatedText : ""
+          } ${isClient && !animateText ? styles.transparent : ""}`}
+        >
+          <div className={`${animateText ? styles.leafContainer : ""}`}>
+            <img
+              className={`${animateText ? styles.leaf : ""}`}
+              width="77"
+              src={builder.image(icon).auto("format").url()}
+              alt=""
+              loading="lazy"
+            />
+          </div>
           <h2>{heading}</h2>
           {tagline && <SimpleBlockContent blocks={tagline} />}
           {cta && cta.route && <Cta {...cta} />}

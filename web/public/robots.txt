@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://embarcadere.netlify.app
+
+# Sitemaps
+Sitemap: https://embarcadere.netlify.app/sitemap.xml

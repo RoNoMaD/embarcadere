@@ -1,14 +1,17 @@
 import PropTypes from "prop-types";
 import React, { Component } from "react";
 import { NextSeo } from "next-seo";
-import groq from "groq";
-import imageUrlBuilder from "@sanity/image-url";
 import { i18n } from "../i18n";
 import Layout from "../components/Layout";
-import client from "../client";
+import { sanityClient, getClient } from "../lib/sanity.server";
 import RenderSections from "../components/RenderSections";
-
-const builder = imageUrlBuilder(client);
+import { urlForImage } from "../lib/sanity";
+import {
+  siteConfigQuery,
+  frontpageQuery,
+  pageQuery,
+  routesQuery,
+} from "../lib/queries";
 
 class LandingPage extends Component {
   static propTypes = {
@@ -42,21 +45,21 @@ class LandingPage extends Component {
     const openGraphImages = openGraphImage
       ? [
           {
-            url: builder.image(openGraphImage).width(800).height(600).url(),
+            url: urlForImage(openGraphImage).width(800).height(600).url(),
             width: 800,
             height: 600,
             alt: title,
           },
           {
             // Facebook recommended size
-            url: builder.image(openGraphImage).width(1200).height(630).url(),
+            url: urlForImage(openGraphImage).width(1200).height(630).url(),
             width: 1200,
             height: 630,
             alt: title,
           },
           {
             // Square 1:1
-            url: builder.image(openGraphImage).width(600).height(600).url(),
+            url: urlForImage(openGraphImage).width(600).height(600).url(),
             width: 600,
             height: 600,
             alt: title,
@@ -100,52 +103,7 @@ class LandingPage extends Component {
 
 export default LandingPage;
 
-const siteConfigQuery = `
-  *[_id == "global-config"] {
-    ...,
-    logo {asset->{extension, url}, alt},
-    mainNavigation[] -> {
-      ...,
-      "title": page->title[$locale]
-    },
-    footerNavigation[] -> {
-      ...,
-      "title": page->title[$locale]
-    }
-  }[0]
-  `;
-
-const pageQuery = groq`
-*[_type == "route" && slug.current == $slug][0]{
-  page-> {
-    ...,
-    "title": coalesce(title[$locale], title.fr),
-    content[] {
-      ...,
-      "heading": coalesce(heading[$locale], heading.fr),
-      "tagline": coalesce(tagline[$locale],tagline.fr),
-      "text": coalesce(text[$locale],text.fr),
-      cta {
-        ...,
-        "title": coalesce(title[$locale], title.fr),
-        route->
-      },
-      content[] {
-        ...,
-        "heading": coalesce(heading[$locale], heading.fr),
-        "price": coalesce(price[$locale],price.fr),
-        cta {
-          ...,
-          "title": coalesce(title[$locale], title.fr),
-          route->
-        },
-      },
-    }
-  }
-}
-`;
-
-export async function getStaticProps({ params }) {
+export async function getStaticProps({ params, preview = false }) {
   let pageSlug = "";
   let locale = i18n.defaultLocale;
   if (params.slug) {
@@ -159,69 +117,27 @@ export async function getStaticProps({ params }) {
     }
   }
 
-  const config = await client.fetch(siteConfigQuery, { locale });
+  const config = await getClient(preview).fetch(siteConfigQuery, { locale });
 
   if (!pageSlug) {
     // Frontpage
-    return client
-      .fetch(
-        groq`
-        *[_id == "global-config"][0]{
-          frontpage -> {
-            ...,
-            "title": coalesce(title[$locale], title.fr),
-            content[] {
-              ...,
-              "heading": coalesce(heading[$locale], heading.fr),
-              "tagline": coalesce(tagline[$locale],tagline.fr),
-              "text": coalesce(text[$locale],text.fr),
-              cta {
-                ...,
-                "title": coalesce(title[$locale], title.fr),
-                route->
-              },
-              content[] {
-                ...,
-                "heading": coalesce(heading[$locale], heading.fr),
-                "price": coalesce(price[$locale],price.fr),
-                cta {
-                  ...,
-                  "title": coalesce(title[$locale], title.fr),
-                  route->
-                },
-              },
-            }
-          }
-        }
-      `,
-        { locale }
-      )
+    return getClient(preview)
+      .fetch(frontpageQuery, { locale })
       .then((res) => ({
-        props: { ...res.frontpage, slug: "/", locale, config },
+        props: { ...res.frontpage, slug: "/", locale, config, preview },
       }));
   }
-  return client.fetch(pageQuery, { slug: pageSlug, locale }).then((res) => {
-    return { props: { ...res.page, slug: pageSlug, locale, config } };
-  });
+  return getClient(preview)
+    .fetch(pageQuery, { slug: pageSlug, locale })
+    .then((res) => {
+      return {
+        props: { ...res.page, slug: pageSlug, locale, config, preview },
+      };
+    });
 }
-
-const query = `
-{
-  "routes": *[_type == "route"] {
-    ...,
-    disallowRobots,
-    includeInSitemap,
-    page->{
-      _id,
-      title,
-      _createdAt,
-      _updatedAt
-  }}
-}
-`;
 
 export async function getStaticPaths() {
-  return client.fetch(query).then((res) => {
+  return sanityClient.fetch(routesQuery).then((res) => {
     const { routes = [] } = res;
     const formattedRoutes = routes
       .filter(({ slug }) => slug.current)

@@ -1,12 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import imageUrlBuilder from "@sanity/image-url";
-import client from "../../client";
+import { urlForImage } from "../../lib/sanity";
 import SimpleBlockContent from "../SimpleBlockContent";
 
 import styles from "./PartnerSection.module.css";
-
-const builder = imageUrlBuilder(client);
 
 function PartnerSection({ heading, text, image }) {
   return (
@@ -14,7 +11,7 @@ function PartnerSection({ heading, text, image }) {
       <div className={styles.imageContainer}>
         <img
           className={styles.image}
-          src={builder.image(image).width(512).auto("format").url()}
+          src={urlForImage(image).width(512).auto("format").url()}
           alt={heading}
           loading="lazy"
         />

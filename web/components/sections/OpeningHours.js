@@ -1,14 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Head from "next/head";
-import imageUrlBuilder from "@sanity/image-url";
-import client from "../../client";
+import { urlForImage } from "../../lib/sanity";
 
 import styles from "./OpeningHours.module.css";
-
-function urlFor(source) {
-  return imageUrlBuilder(client).image(source);
-}
 
 function OpeningHours({ heading, backgroundImage, ranges }) {
   return (
@@ -18,7 +13,7 @@ function OpeningHours({ heading, backgroundImage, ranges }) {
           dangerouslySetInnerHTML={{
             __html: `
                 .opening-hours-background {
-                  background-image: url("${urlFor(backgroundImage)
+                  background-image: url("${urlForImage(backgroundImage)
                     .width(750)
                     .auto("format")
                     .url()}");
@@ -26,7 +21,7 @@ function OpeningHours({ heading, backgroundImage, ranges }) {
               
                 @media (min-width: 450px) {
                   .opening-hours-background {
-                    background-image: url("${urlFor(backgroundImage)
+                    background-image: url("${urlForImage(backgroundImage)
                       .width(1080)
                       .auto("format")
                       .url()}");
@@ -35,7 +30,7 @@ function OpeningHours({ heading, backgroundImage, ranges }) {
 
                 @media (min-width: 900px) {
                   .opening-hours-background {
-                    background-image: url("${urlFor(backgroundImage)
+                    background-image: url("${urlForImage(backgroundImage)
                       .auto("format")
                       .url()}");
                   }

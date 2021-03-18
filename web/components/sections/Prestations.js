@@ -1,12 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import imageUrlBuilder from "@sanity/image-url";
-import client from "../../client";
+import { urlForImage } from "../../lib/sanity";
 import Cta from "../Cta";
 
 import styles from "./Prestations.module.css";
-
-const builder = imageUrlBuilder(client);
 
 function Prestations(props) {
   const { heading, content } = props;
@@ -22,8 +19,7 @@ function Prestations(props) {
               className={styles.prestation}
               style={{
                 backgroundImage: `url(
-                    ${builder
-                      .image(prestation.image)
+                    ${urlForImage(prestation.image)
                       .width(288)
                       .height(460)
                       .auto("format")

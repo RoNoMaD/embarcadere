@@ -1,16 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Head from "next/head";
-import imageUrlBuilder from "@sanity/image-url";
-import client from "../client";
+import { urlForImage } from "../lib/sanity";
 
 import { LogoJsonLd } from "next-seo";
 import Header from "./Header";
 import Footer from "./Footer";
-
-function urlFor(source) {
-  return imageUrlBuilder(client).image(source);
-}
 
 function Layout(props) {
   const { config, heroBgImg, children } = props;
@@ -93,19 +88,19 @@ function Layout(props) {
             />
             <link
               rel="preload"
-              href={urlFor(heroBgImg).width(750).auto("format").url()}
+              href={urlForImage(heroBgImg).width(750).auto("format").url()}
               as="image"
               media="(max-width: 449px)"
             ></link>
             <link
               rel="preload"
-              href={urlFor(heroBgImg).width(1080).auto("format").url()}
+              href={urlForImage(heroBgImg).width(1080).auto("format").url()}
               as="image"
               media="(min-width: 450px and max-width: 899px)"
             ></link>
             <link
               rel="preload"
-              href={urlFor(heroBgImg).auto("format").url()}
+              href={urlForImage(heroBgImg).auto("format").url()}
               as="image"
               media="(min-width: 900px)"
             ></link>
@@ -113,7 +108,7 @@ function Layout(props) {
               dangerouslySetInnerHTML={{
                 __html: `
                 .hero-image {
-                  background-image: url("${urlFor(heroBgImg)
+                  background-image: url("${urlForImage(heroBgImg)
                     .width(750)
                     .auto("format")
                     .url()}");
@@ -121,7 +116,7 @@ function Layout(props) {
               
                 @media (min-width: 450px) {
                   .hero-image {
-                    background-image: url("${urlFor(heroBgImg)
+                    background-image: url("${urlForImage(heroBgImg)
                       .width(1080)
                       .auto("format")
                       .url()}");
@@ -130,7 +125,7 @@ function Layout(props) {
 
                 @media (min-width: 900px) {
                   .hero-image {
-                    background-image: url("${urlFor(heroBgImg)
+                    background-image: url("${urlForImage(heroBgImg)
                       .auto("format")
                       .url()}");
                   }

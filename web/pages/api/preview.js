@@ -18,7 +18,7 @@ export default async function preview(req, res) {
   // const post = await previewClient.fetch(postBySlugQuery, {
   //   slug: req.query.slug,
   // });
-  const slug = req.query.slug;
+  const slug = req.query.slug.split("/");
   let pageSlug = "";
   let locale = i18n.defaultLocale;
   if (slug) {
@@ -54,6 +54,6 @@ export default async function preview(req, res) {
 
   // Redirect to the path from the fetched post
   // We don't redirect to req.query.slug as that might lead to open redirect vulnerabilities
-  res.writeHead(307, { Location: `/${page.slug}` });
+  res.writeHead(307, { Location: `/${pageSlug}` });
   res.end();
 }

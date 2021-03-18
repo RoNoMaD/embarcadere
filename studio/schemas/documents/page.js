@@ -10,6 +10,11 @@ export default {
   ],
   fields: [
     {
+      name: 'slug',
+      type: 'slug',
+      title: 'Slug'
+    },
+    {
       name: 'title',
       type: 'string',
       title: 'Titre',

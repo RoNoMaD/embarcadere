@@ -1,4 +1,4 @@
-import { frontpageQuery, pageQuery } from "../../lib/queries";
+import { pageQuery } from "../../lib/queries";
 import { previewClient } from "../../lib/sanity.server";
 import { i18n } from "../../i18n";
 
@@ -30,16 +30,7 @@ export default async function preview(req, res) {
     }
   }
 
-  let page;
-
-  if (!pageSlug) {
-    // Frontpage
-    page = await previewClient.fetch(frontpageQuery, { locale });
-  } else {
-    page = await previewClient.fetch(pageQuery, { slug: pageSlug, locale });
-  }
-
-  console.log({ page });
+  const page = await previewClient.fetch(pageQuery, { slug: pageSlug, locale });
 
   // If the slug doesn't exist prevent preview mode from being enabled
   if (!page) {

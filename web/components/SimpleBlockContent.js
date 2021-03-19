@@ -1,10 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import BlockContent from "@sanity/block-content-to-react";
-import client from "../client";
+import { projectId, dataset } from "../lib/config";
 import customSerializers from "./serializers";
-
-const { projectId, dataset } = client.config();
 
 function SimpleBlockContent(props) {
   const { blocks, serializers } = props;

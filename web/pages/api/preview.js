@@ -12,8 +12,6 @@ export default async function preview(req, res) {
     return res.status(401).json({ message: "Invalid token" });
   }
 
-  console.log(req.query.slug);
-
   // Check if the post with the given `slug` exists
   // const post = await previewClient.fetch(postBySlugQuery, {
   //   slug: req.query.slug,
@@ -31,7 +29,6 @@ export default async function preview(req, res) {
       pageSlug = slug[0];
     }
   }
-  console.log({ pageSlug });
 
   let page;
 
@@ -52,7 +49,7 @@ export default async function preview(req, res) {
   // Enable Preview Mode by setting the cookies
   res.setPreviewData({});
 
-  // Redirect to the path from the fetched post
+  // Redirect to the path from the fetched page
   // We don't redirect to req.query.slug as that might lead to open redirect vulnerabilities
   res.writeHead(307, { Location: `/${pageSlug}` });
   res.end();

@@ -39,3 +39,7 @@ jspm_packages
 
 # Static
 out
+
+# env
+.env
+.env.local

@@ -6,12 +6,7 @@ import Layout from "../components/Layout";
 import { sanityClient, getClient } from "../lib/sanity.server";
 import RenderSections from "../components/RenderSections";
 import { urlForImage } from "../lib/sanity";
-import {
-  siteConfigQuery,
-  frontpageQuery,
-  pageQuery,
-  routesQuery,
-} from "../lib/queries";
+import { siteConfigQuery, pageQuery, routesQuery } from "../lib/queries";
 
 class LandingPage extends Component {
   static propTypes = {
@@ -119,19 +114,11 @@ export async function getStaticProps({ params, preview = false }) {
 
   const config = await getClient(preview).fetch(siteConfigQuery, { locale });
 
-  if (!pageSlug) {
-    // Frontpage
-    return getClient(preview)
-      .fetch(frontpageQuery, { locale })
-      .then((res) => ({
-        props: { ...res.frontpage, slug: "/", locale, config, preview },
-      }));
-  }
   return getClient(preview)
-    .fetch(pageQuery, { slug: pageSlug, locale })
+    .fetch(pageQuery, { slug: pageSlug || "/", locale })
     .then((res) => {
       return {
-        props: { ...res.page, slug: pageSlug, locale, config, preview },
+        props: { ...res, slug: pageSlug || "/", locale, config, preview },
       };
     });
 }

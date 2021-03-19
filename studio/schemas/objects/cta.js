@@ -22,7 +22,7 @@ export default {
       description: 'Use this to link between pages on the website',
       name: 'route',
       type: 'reference',
-      to: [{ type: 'route' }],
+      to: [{ type: 'page' }],
       fieldset: 'link'
     },
     {

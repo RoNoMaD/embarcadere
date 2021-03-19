@@ -6,11 +6,11 @@ export const siteConfigQuery = `
     logo {asset->{extension, url}, alt},
     mainNavigation[] -> {
       ...,
-      "title": page->title[$locale]
+      "title": title[$locale]
     },
     footerNavigation[] -> {
       ...,
-      "title": page->title[$locale]
+      "title": title[$locale]
     }
   }[0]
   `;

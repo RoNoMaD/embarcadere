@@ -1,10 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import imageUrlBuilder from "@sanity/image-url";
+import { urlForImage } from "../lib/sanity";
 import styles from "./Figure.module.css";
-import client from "../client";
-
-const builder = imageUrlBuilder(client);
 
 function Figure({ node }) {
   const { alt, caption, asset } = node;
@@ -14,7 +11,7 @@ function Figure({ node }) {
   return (
     <figure className={styles.content}>
       <img
-        src={builder.image(asset).auto("format").width(2000).url()}
+        src={urlForImage(asset).auto("format").width(2000).url()}
         className={styles.image}
         alt={alt}
       />

@@ -14,6 +14,7 @@
     "@sanity/default-login",
     "@sanity/dashboard",
     "@sanity/desk-tool",
+    "@sanity/production-preview",
     "dashboard-widget-structure-menu",
     "dashboard-widget-document-list",
     "dashboard-widget-netlify",
@@ -37,6 +38,10 @@
     {
       "implements": "part:@sanity/default-layout/studio-hints-config",
       "path": "./studioHintsConfig.js"
+    },
+    {
+      "implements": "part:@sanity/production-preview/resolve-production-url",
+      "path": "./resolveProductionUrl.js"
     }
   ]
 }

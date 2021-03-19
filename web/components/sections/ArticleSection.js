@@ -1,14 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { useIntersection } from "react-use";
-import imageUrlBuilder from "@sanity/image-url";
-import client from "../../client";
+import { urlForImage } from "../../lib/sanity";
 import SimpleBlockContent from "../SimpleBlockContent";
 import Cta from "../Cta";
 
 import styles from "./ArticleSection.module.css";
-
-const builder = imageUrlBuilder(client);
 
 function ArticleSection({ icon, heading, tagline, image, cta }) {
   const [isClient, setClient] = React.useState(false);
@@ -31,7 +28,7 @@ function ArticleSection({ icon, heading, tagline, image, cta }) {
     <div className={styles.root}>
       <img
         className={styles.image}
-        src={builder.image(image).width(512).auto("format").url()}
+        src={urlForImage(image).width(512).auto("format").url()}
         alt={heading}
         loading="lazy"
       />
@@ -45,7 +42,7 @@ function ArticleSection({ icon, heading, tagline, image, cta }) {
             <img
               className={`${animateText ? styles.leaf : ""}`}
               width="77"
-              src={builder.image(icon).auto("format").url()}
+              src={urlForImage(icon).auto("format").url()}
               alt=""
               loading="lazy"
             />

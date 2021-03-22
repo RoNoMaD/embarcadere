@@ -99,6 +99,8 @@ class LandingPage extends Component {
 export default LandingPage;
 
 export async function getStaticProps({ params, preview = false }) {
+  console.log("ppreview", preview);
+  console.log("params.slug", params.slug);
   let pageSlug = "";
   let locale = i18n.defaultLocale;
   if (params.slug) {
@@ -113,6 +115,8 @@ export async function getStaticProps({ params, preview = false }) {
   }
 
   const config = await getClient(preview).fetch(siteConfigQuery, { locale });
+  const clientConfig = getClient(preview).config();
+  console.log("client config", clientConfig);
 
   return getClient(preview)
     .fetch(pageQuery, { slug: pageSlug || "/", locale })

@@ -2,8 +2,6 @@
 
 _SEO friendly page builder in React.js. Heroes, sign-up forms and calls to action._
 
-Deployed from [sanity.io/create](https://www.sanity.io/create/?template=sanity-io%2Fsanity-template-nextjs-landing-pages).
-
 ## What you have
 
 - A dynamic frontend with [Next.js](https://nextjs.org)
@@ -21,10 +19,4 @@ Deployed from [sanity.io/create](https://www.sanity.io/create/?template=sanity-i
 
 ## Deploy changes
 
-Netlify automatically deploys new changes commited to master on GitHub. If you want to change deployment branch, do so in [build & deploy settings on Netlify](https://www.netlify.com/docs/continuous-deployment/#branches-deploys).
-
-## Stuck? Get help
-
-[![Slack Community Button](https://slack.sanity.io/badge.svg)](https://slack.sanity.io/)
-
-Join [Sanity’s developer community](https://slack.sanity.io) or ping us [on twitter](https://twitter.com/sanity_io).
+Netlify automatically deploys new changes commited to main branch on GitHub. If you want to change deployment branch, do so in [build & deploy settings on Netlify](https://www.netlify.com/docs/continuous-deployment/#branches-deploys).
